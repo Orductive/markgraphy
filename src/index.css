@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0B0B0C;
+  --color-surface: #111112;
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #888888;
+  --color-accent: #CC0000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
