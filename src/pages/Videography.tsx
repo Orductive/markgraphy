@@ -1,35 +1,102 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Play } from 'lucide-react';
+import { videos } from '../data/videos';
 
 const Videography: React.FC = () => {
-  const projects = [
-    { id: 1, title: 'Project One', category: 'Commercial' },
-    { id: 2, title: 'Project Two', category: 'Documentary' },
-    { id: 3, title: 'Project Three', category: 'Music Video' },
-    { id: 4, title: 'Project Four', category: 'Event' },
-  ];
+  const [filter, setFilter] = useState<'All' | 'Documentaries' | 'Brand Storytelling'>('All');
+
+  const filteredVideos = filter === 'All' 
+    ? videos 
+    : videos.filter(v => v.category === filter);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <h1 className="font-display text-4xl md:text-5xl text-white mb-12 text-center">Videography</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project) => (
-          <div key={project.id} className="group cursor-pointer">
-            <div className="aspect-video w-full bg-[var(--color-surface)] flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-[1.02]">
-              <span className="text-[var(--color-text-secondary)]">Video Placeholder</span>
-            </div>
-            <div className="flex justify-between items-start">
-              <h3 className="text-xl text-white font-medium group-hover:text-[var(--color-accent)] transition-colors">
-                {project.title}
-              </h3>
-              <span className="text-sm text-[var(--color-text-secondary)] uppercase tracking-wider">
-                {project.category}
-              </span>
-            </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 min-h-screen">
+      <div className="flex flex-col lg:flex-row items-start">
+        
+        {/* Sidebar Filters */}
+        <div className="w-full lg:w-1/5 mb-12 lg:mb-0 lg:pr-8 lg:sticky lg:top-24">
+          <div className="flex flex-col space-y-6">
+            {['All', 'Documentaries', 'Brand Storytelling'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setFilter(tab as any)}
+                className={`text-left transition-colors font-['Space_Mono'] text-sm uppercase tracking-widest ${
+                  filter === tab 
+                    ? 'text-[var(--color-accent)] font-bold' 
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
+        
+        {/* Video Grid */}
+        <div className="w-full lg:w-4/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
+            {filteredVideos.map((project) => (
+              <VideoCard key={project.id} project={project} />
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
+  );
+};
+
+const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Link 
+      ref={cardRef}
+      to={`/videography/${project.id}`} 
+      className="group block cursor-pointer"
+    >
+      <div className="relative aspect-[3/2] bg-[var(--color-surface)] flex items-center justify-center overflow-hidden mb-[20px]">
+        <img 
+          src={project.thumbnail} 
+          alt={project.title} 
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-20 transition-all z-10">
+          <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform">
+            <Play size={24} className="text-white" />
+          </div>
+        </div>
+      </div>
+      <div className={`transform transition-all duration-700 ease-out delay-100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+        <span className="text-xs text-[var(--color-accent)] uppercase tracking-wider block mb-1 font-semibold">
+          {project.category}
+        </span>
+        <h3 className="text-2xl text-white font-display uppercase">
+          {project.title}
+        </h3>
+      </div>
+    </Link>
   );
 };
 
