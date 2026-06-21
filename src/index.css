@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: 'Anton', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
 :root {
   --color-background: #0B0B0C;
   --color-surface: #111112;
@@ -8,18 +13,15 @@
   --color-accent: #CC0000;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
-body {
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  font-family: 'Space Mono', monospace;
-}
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    @apply font-body;
+  }
 
-h1, h2, h3, .font-display {
-  font-family: 'Anton', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  h1, h2, h3 {
+    @apply font-heading uppercase tracking-[-0.02em];
+  }
 }

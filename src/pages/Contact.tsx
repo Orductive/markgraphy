@@ -3,7 +3,7 @@ import React from 'react';
 const Contact: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <h1 className="font-display text-4xl md:text-5xl text-white mb-8 text-center">Get in Touch</h1>
+      <h1 className="font-heading text-4xl md:text-5xl text-white mb-8 text-center">Get in Touch</h1>
       <p className="text-[var(--color-text-secondary)] text-center mb-12 text-lg">
         Interested in working together? Drop a message below.
       </p>

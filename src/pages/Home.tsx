@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, Play, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Accordion from '../components/Accordion';
+import Reveal from '../components/Reveal';
 
 const Home: React.FC = () => {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
   const location = useLocation();
   
   const servicesData = [
@@ -34,21 +32,6 @@ const Home: React.FC = () => {
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeImage, setActiveImage] = useState<number | null>(null);
-
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      headlineRef.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
-    ).fromTo(
-      taglineRef.current,
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-      '-=0.5'
-    );
-  }, []);
-
   useEffect(() => {
     if (location.hash === '#contact') {
       setTimeout(() => {
@@ -86,18 +69,16 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
 
         <div className="relative z-20 text-center px-4 flex flex-col items-center">
-          <h1 
-            ref={headlineRef}
-            className="text-6xl md:text-8xl lg:text-9xl mb-6"
-          >
-            MARKGRAPHY
-          </h1>
-          <p 
-            ref={taglineRef}
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
-          >
-            Capturing moments that define a lifetime.
-          </p>
+          <Reveal y={50} duration={1} delay={0.2}>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl mb-6">
+              MARKGRAPHY
+            </h1>
+          </Reveal>
+          <Reveal y={20} duration={0.8} delay={0.7}>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+              Capturing moments that define a lifetime.
+            </p>
+          </Reveal>
           <Link
             to="/contact"
             className="px-8 py-4 bg-[var(--color-accent)] text-white font-medium hover:bg-red-700 transition-colors uppercase tracking-widest text-sm"
@@ -124,7 +105,7 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
-          <div>
+          <Reveal>
             <h2 className="text-4xl mb-6">About Me</h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
               I am a passionate visual storyteller based in Maine, dedicated to bringing ideas to life through dynamic photography and cinematic videography. With years of experience behind the lens, I focus on authentic moments and premium aesthetics.
@@ -132,20 +113,22 @@ const Home: React.FC = () => {
             <Link to="/about" className="text-[var(--color-accent)] hover:text-white transition-colors border-b border-[var(--color-accent)] pb-1">
               More About Me
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
 
 
       {/* 4. Story Sells / Featured Work Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] text-center">
-        <h2 className="text-6xl md:text-8xl font-display uppercase tracking-tight leading-none mb-6">STORY SELLS.</h2>
-        <p className="text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed">
-          People don't buy what you do; they buy why you do it. Every frame we capture, every sequence we build is meticulously crafted to communicate your authentic narrative. We don't just shoot video—we engineer emotion.
-        </p>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] text-center overflow-hidden">
+        <Reveal>
+          <h2 className="text-6xl md:text-8xl font-heading uppercase tracking-tight leading-none mb-6">STORY SELLS.</h2>
+          <p className="text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed">
+            People don't buy what you do; they buy why you do it. Every frame we capture, every sequence we build is meticulously crafted to communicate your authentic narrative. We don't just shoot video—we engineer emotion.
+          </p>
+        </Reveal>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
+        <Reveal staggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
           {[1, 2].map((video) => (
             <div key={video} className="group relative aspect-video bg-[var(--color-surface)] flex items-center justify-center cursor-pointer overflow-hidden">
               <span className="text-[var(--color-text-secondary)]">YouTube Embed Placeholder {video}</span>
@@ -155,11 +138,11 @@ const Home: React.FC = () => {
                 </div>
               </div>
               <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent">
-                <h3 className="text-xl font-display uppercase">Cinematic Title {video}</h3>
+                <h3 className="text-xl font-heading uppercase">Cinematic Title {video}</h3>
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
         
         <Link to="/videography" className="inline-block px-10 py-4 border border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors uppercase tracking-widest text-sm font-semibold">
           More of My Work
@@ -167,15 +150,15 @@ const Home: React.FC = () => {
       </section>
 
       {/* 5. Grid Gallery */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)]">
-        <div className="flex justify-between items-end mb-12">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] overflow-hidden">
+        <Reveal className="flex justify-between items-end mb-12">
           <h2 className="text-4xl">Gallery</h2>
           <Link to="/photography" className="hidden md:inline-block text-[var(--color-accent)] hover:text-white transition-colors border-b border-[var(--color-accent)] pb-1">
             View All Photos
           </Link>
-        </div>
+        </Reveal>
         
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
           {[...Array(6)].map((_, i) => (
             <div 
               key={i} 
@@ -189,7 +172,7 @@ const Home: React.FC = () => {
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
             </div>
           ))}
-        </div>
+        </Reveal>
         <div className="text-center md:hidden mt-10">
           <Link to="/photography" className="inline-block px-6 py-3 border border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors">
             View All Photos
@@ -198,30 +181,32 @@ const Home: React.FC = () => {
       </section>
 
       {/* 5. Services Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <h2 className="text-6xl md:text-8xl lg:text-9xl font-display uppercase tracking-tight leading-none">Services</h2>
-          <div className="w-full">
+          <Reveal>
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-heading uppercase tracking-tight leading-none">Services</h2>
+          </Reveal>
+          <Reveal className="w-full">
             <Accordion items={servicesData} defaultOpenId="videography" />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 6. Contact Section */}
-      <section id="contact" className="py-12 bg-[var(--color-background)] text-white scroll-mt-20">
+      <section id="contact" className="py-12 bg-[var(--color-background)] text-white scroll-mt-20 overflow-hidden">
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             
             {/* Left Column: Heading */}
-            <div>
-              <h2 className="text-[77px] font-semibold tracking-[-2.3px] font-display uppercase leading-none text-white mb-8">
+            <Reveal>
+              <h2 className="text-[77px] font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">
                 CONTACT ME.
               </h2>
-            </div>
+            </Reveal>
             
             {/* Right Column: Form */}
-            <div className="w-full">
-              <form className="space-y-8 font-['Space_Mono']">
+            <Reveal className="w-full">
+              <form className="space-y-8 font-body">
                 {/* Name Fields */}
                 <div>
                   <label className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Name</label>
@@ -281,7 +266,7 @@ const Home: React.FC = () => {
                   Send
                 </button>
               </form>
-            </div>
+            </Reveal>
 
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import AnimatedOutlet from './AnimatedOutlet';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -8,7 +8,7 @@ const Layout: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        <Outlet />
+        <AnimatedOutlet />
       </main>
       <Footer />
     </div>

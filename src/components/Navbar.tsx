@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      
+      setIsScrolled(currentScrollY > 80);
       
       // Only apply sticky hide/show on videography page
       if (location.pathname === '/videography') {
@@ -44,7 +47,11 @@ const Navbar: React.FC = () => {
     e.preventDefault();
     closeMenu();
     if (location.pathname === '/') {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      if (window.lenis) {
+        window.lenis.scrollTo('#contact');
+      } else {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       navigate('/#contact');
     }
@@ -52,7 +59,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`sticky top-0 z-50 bg-[var(--color-background)] border-b border-[var(--color-surface)] transition-transform duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-[var(--color-background)]/95 backdrop-blur-sm border-b border-[var(--color-surface)] shadow-md' 
+          : 'bg-transparent border-transparent'
+      } ${
         isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
@@ -89,7 +100,7 @@ const Navbar: React.FC = () => {
 
           {/* Logo / Brand (Center) */}
           <div className="flex-1 flex justify-center items-center">
-            <Link to="/" className="text-2xl font-display font-semibold tracking-wide" onClick={closeMenu}>
+            <Link to="/" className="text-2xl font-heading uppercase font-semibold tracking-wide" onClick={closeMenu}>
               MARKGRAPHY
             </Link>
           </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { albums } from '../data/albums';
+import Reveal from '../components/Reveal';
 
 const AlbumDetail: React.FC = () => {
   const { albumId } = useParams<{ albumId: string }>();
@@ -41,13 +42,13 @@ const AlbumDetail: React.FC = () => {
       </div>
 
       {/* Album Header */}
-      <div className="mb-16">
-        <h1 className="font-display text-5xl md:text-7xl mb-6">{album.title}</h1>
+      <Reveal className="mb-16">
+        <h1 className="font-heading text-5xl md:text-7xl mb-6">{album.title}</h1>
         <p className="text-xl text-gray-400 max-w-3xl leading-relaxed">{album.description}</p>
-      </div>
+      </Reveal>
 
       {/* Masonry Grid */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         {album.images.map((imgSrc, i) => (
           <div 
             key={i} 
@@ -63,7 +64,7 @@ const AlbumDetail: React.FC = () => {
             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
           </div>
         ))}
-      </div>
+      </Reveal>
 
       {/* Lightbox Overlay */}
       {lightboxOpen && activeImageIndex !== null && (

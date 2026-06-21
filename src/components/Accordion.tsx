@@ -27,7 +27,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, defaultOpenId }) => {
             onClick={() => toggle(item.id)}
             className="w-full py-4 flex justify-between items-center focus:outline-none group"
           >
-            <span className="text-2xl md:text-3xl font-display uppercase text-[var(--color-accent)] group-hover:text-red-500 transition-colors tracking-wide">
+            <span className="text-2xl md:text-3xl font-heading uppercase text-[var(--color-accent)] group-hover:text-red-500 transition-colors tracking-wide">
               {item.title}
             </span>
             <span className="text-white group-hover:text-[var(--color-accent)] transition-colors">
