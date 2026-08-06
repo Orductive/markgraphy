@@ -1,6 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Contact: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error ?? 'Something went wrong. Please try again.');
+      }
+
+      setSuccess(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
       <h1 className="font-heading text-4xl md:text-5xl text-white mb-8 text-center">Get in Touch</h1>
@@ -8,7 +49,19 @@ const Contact: React.FC = () => {
         Interested in working together? Drop a message below.
       </p>
 
-      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+      {success && (
+        <div className="mb-8 rounded-md bg-green-900/40 border border-green-700 px-5 py-4 text-green-300 text-sm text-center">
+          ✅ Your message was sent! I'll get back to you soon.
+        </div>
+      )}
+
+      {error && (
+        <div className="mb-8 rounded-md bg-red-900/40 border border-red-700 px-5 py-4 text-red-300 text-sm text-center">
+          ⚠️ {error}
+        </div>
+      )}
+
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
             Name
@@ -16,7 +69,11 @@ const Contact: React.FC = () => {
           <input
             type="text"
             id="name"
-            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            disabled={isLoading}
+            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors disabled:opacity-50"
             placeholder="Your Name"
           />
         </div>
@@ -28,7 +85,11 @@ const Contact: React.FC = () => {
           <input
             type="email"
             id="email"
-            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            disabled={isLoading}
+            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors disabled:opacity-50"
             placeholder="you@example.com"
           />
         </div>
@@ -40,16 +101,21 @@ const Contact: React.FC = () => {
           <textarea
             id="message"
             rows={5}
-            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors resize-none"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+            disabled={isLoading}
+            className="w-full bg-[var(--color-surface)] border border-gray-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-[var(--color-accent)] transition-colors resize-none disabled:opacity-50"
             placeholder="Tell me about your project..."
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-[var(--color-accent)] hover:bg-red-700 text-white font-medium py-4 px-6 rounded-md transition-colors"
+          disabled={isLoading}
+          className="w-full bg-[var(--color-accent)] hover:bg-red-700 text-white font-medium py-4 px-6 rounded-md transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Send Message
+          {isLoading ? 'Sending…' : 'Send Message'}
         </button>
       </form>
     </div>
