@@ -195,7 +195,7 @@ const Home: React.FC = () => {
       {/* 6. Contact Section */}
       <section id="contact" className="py-12 bg-[var(--color-background)] text-white scroll-mt-20 overflow-hidden">
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
             {/* Left Column: Heading */}
             <Reveal>
@@ -204,73 +204,23 @@ const Home: React.FC = () => {
               </h2>
             </Reveal>
             
-            {/* Right Column: Form */}
+            {/* Right Column: CTA */}
             <Reveal className="w-full">
-              <form className="space-y-8 font-body">
-                {/* Name Fields */}
-                <div>
-                  <label className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Name</label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="sr-only">First Name</label>
-                      <input 
-                        type="text" 
-                        id="firstName" 
-                        placeholder="First Name (required)"
-                        required
-                        className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="sr-only">Last Name</label>
-                      <input 
-                        type="text" 
-                        id="lastName" 
-                        placeholder="Last Name (required)"
-                        required
-                        className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Email Field */}
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    placeholder="Email (required)"
-                    required
-                    className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm"
-                  />
-                </div>
-
-                {/* Description Field */}
-                <div>
-                  <label htmlFor="description" className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Brief Description</label>
-                  <input 
-                    type="text" 
-                    id="description" 
-                    placeholder="Brief Description (required)"
-                    required
-                    className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button 
-                  type="submit"
-                  className="w-full md:w-auto px-10 py-4 bg-[var(--color-accent)] text-white font-semibold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors"
-                >
-                  Send
-                </button>
-              </form>
+              <p className="text-gray-300 text-lg mb-8 font-body">
+                Interested in working together? Drop me a message and I'll get back to you as soon as possible.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-block px-10 py-4 bg-[var(--color-accent)] text-white font-semibold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors"
+              >
+                Get in Touch
+              </Link>
             </Reveal>
 
           </div>
         </div>
       </section>
+
 
       {/* Lightbox Overlay */}
       {lightboxOpen && (

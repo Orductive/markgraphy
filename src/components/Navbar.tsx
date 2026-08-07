@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -8,7 +8,6 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const links = [
     { name: 'Home', path: '/' },
@@ -43,18 +42,8 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, location.pathname]);
 
-  const handleContactClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleContactClick = () => {
     closeMenu();
-    if (location.pathname === '/') {
-      if (window.lenis) {
-        window.lenis.scrollTo('#contact');
-      } else {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      navigate('/#contact');
-    }
   };
 
   return (
@@ -107,20 +96,20 @@ const Navbar: React.FC = () => {
 
           {/* Contact CTA (Right) */}
           <div className="flex-1 flex justify-end items-center">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               onClick={handleContactClick}
               className="text-sm font-medium px-5 py-2 bg-[var(--color-accent)] text-white hover:bg-red-700 transition-colors hidden md:block cursor-pointer"
             >
               Contact
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              to="/contact"
               onClick={handleContactClick}
               className="text-xs font-medium px-4 py-2 bg-[var(--color-accent)] text-white hover:bg-red-700 transition-colors md:hidden cursor-pointer"
             >
               Contact
-            </a>
+            </Link>
           </div>
           
         </div>

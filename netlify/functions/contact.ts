@@ -74,7 +74,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   // Notification email to Bismark
   const notificationResult = await resend.emails.send({
-    from: 'Markgraphy Contact <noreply@marrkygraphy.com>',
+    from: 'Markgraphy Contact <noreply@marrkgraphy.com>',
     to: [contactToEmail],
     subject: 'New Contact Form Submission',
     html: `
@@ -93,7 +93,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   // Auto-reply to the submitter
   const autoReplyResult = await resend.emails.send({
-    from: 'Bismark at Markgraphy <noreply@marrkygraphy.com>',
+    from: 'Bismark at Markgraphy <noreply@marrkgraphy.com>',
     to: [email],
     subject: "We received your message — we'll be in touch!",
     html: `
