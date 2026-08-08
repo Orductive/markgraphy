@@ -99,14 +99,14 @@ const Navbar: React.FC = () => {
             <Link
               to="/contact"
               onClick={handleContactClick}
-              className="text-sm font-medium px-5 py-2 bg-[var(--color-accent)] text-white hover:bg-red-700 transition-colors hidden md:block cursor-pointer"
+              className="text-sm font-medium px-5 py-2 bg-white text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300 hidden md:block cursor-pointer"
             >
               Contact
             </Link>
             <Link
               to="/contact"
               onClick={handleContactClick}
-              className="text-xs font-medium px-4 py-2 bg-[var(--color-accent)] text-white hover:bg-red-700 transition-colors md:hidden cursor-pointer"
+              className="text-xs font-medium px-4 py-2 bg-white text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors duration-300 md:hidden cursor-pointer"
             >
               Contact
             </Link>

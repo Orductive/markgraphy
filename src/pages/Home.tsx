@@ -4,6 +4,18 @@ import { Link, useLocation } from 'react-router-dom';
 import Accordion from '../components/Accordion';
 import Reveal from '../components/Reveal';
 
+// Asset imports
+import heroImage from '../assets/hero-real.jpg';
+import logoImage from '../assets/logo.png';
+import about1 from '../assets/about-1.jpg';
+import about2 from '../assets/about-2.jpg';
+import gallery1 from '../assets/gallery-1.jpg';
+import gallery2 from '../assets/gallery-2.jpg';
+import gallery3 from '../assets/gallery-3.jpg';
+import gallery4 from '../assets/gallery-4.jpg';
+import gallery5 from '../assets/gallery-5.jpg';
+import gallery6 from '../assets/gallery-6.jpg';
+
 const Home: React.FC = () => {
   const location = useLocation();
   
@@ -27,7 +39,15 @@ const Home: React.FC = () => {
 
   // Crossfade state for About Me section
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const placeholderImages = ['Image 1', 'Image 2', 'Image 3'];
+  const aboutImages = [about1, about2];
+  const galleryImages = [
+    { src: gallery1, alt: 'Portrait photography in natural light' },
+    { src: gallery2, alt: 'Creative street photography' },
+    { src: gallery3, alt: 'Cinematic outdoor portrait' },
+    { src: gallery4, alt: 'Dramatic lighting portrait' },
+    { src: gallery5, alt: 'Urban photography session' },
+    { src: gallery6, alt: 'Artistic event photography' },
+  ];
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -42,10 +62,10 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % placeholderImages.length);
+      setCurrentImageIndex((prev) => (prev + 1) % aboutImages.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [placeholderImages.length]);
+  }, [aboutImages.length]);
 
   const openLightbox = (index: number) => {
     setActiveImage(index);
@@ -62,16 +82,14 @@ const Home: React.FC = () => {
       {/* 1. Hero Section */}
       <section className="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden -mt-20">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[var(--color-surface)] flex items-center justify-center opacity-50">
-            <span className="text-[var(--color-text-secondary)]">Video/Image Placeholder</span>
-          </div>
+          <img src={heroImage} alt="Bismark Akoto capturing cinematic visuals" className="w-full h-full object-cover" />
         </div>
-        <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
 
         <div className="relative z-20 text-center px-4 flex flex-col items-center">
           <Reveal y={50} duration={1} delay={0.2}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl mb-6">
-              MARKGRAPHY
+            <h1 className="mb-6">
+              <img src={logoImage} alt="Marrkgraphy" className="w-[220px] md:w-[340px] lg:w-[400px] mx-auto brightness-0 invert" />
             </h1>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
@@ -95,20 +113,20 @@ const Home: React.FC = () => {
       {/* 2. About Me Preview */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-[4/5] bg-[var(--color-surface)] overflow-hidden flex items-center justify-center">
-            {placeholderImages.map((img, index) => (
-              <div 
+          <div className="relative aspect-[4/5] overflow-hidden">
+            {aboutImages.map((img, index) => (
+              <img 
                 key={index}
-                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${currentImageIndex === index ? 'opacity-100' : 'opacity-0'}`}
-              >
-                <span className="text-[var(--color-text-secondary)]">About Me {img}</span>
-              </div>
+                src={img}
+                alt={`Bismark Akoto ${index === 0 ? 'behind the camera' : 'on a photography shoot'}`}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${currentImageIndex === index ? 'opacity-100' : 'opacity-0'}`}
+              />
             ))}
           </div>
           <Reveal>
             <h2 className="text-4xl mb-6">About Me</h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              I am a passionate visual storyteller based in Maine, dedicated to bringing ideas to life through dynamic photography and cinematic videography. With years of experience behind the lens, I focus on authentic moments and premium aesthetics.
+              I'm Bismark Akoto — a content creator, photographer, and digital storyteller passionate about creating visuals that people connect with and remember. What started in 2020 as a fascination with how stories are made grew into a calling. I produce photography, short-form content, and social media campaigns that help brands, businesses, and creators grow their audience and tell authentic stories — because the best visuals don't come from expensive equipment, they come from understanding people.
             </p>
             <Link to="/about" className="text-[var(--color-accent)] hover:text-white transition-colors border-b border-[var(--color-accent)] pb-1">
               More About Me
@@ -132,7 +150,7 @@ const Home: React.FC = () => {
           {[1, 2].map((video) => (
             <div key={video} className="group relative aspect-video bg-[var(--color-surface)] flex items-center justify-center cursor-pointer overflow-hidden">
               <span className="text-[var(--color-text-secondary)]">YouTube Embed Placeholder {video}</span>
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-20 transition-all">
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-all">
                 <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform">
                   <Play size={24} className="text-white" />
                 </div>
@@ -159,17 +177,15 @@ const Home: React.FC = () => {
         </Reveal>
         
         <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {[...Array(6)].map((_, i) => (
+          {galleryImages.map((image, i) => (
             <div 
               key={i} 
               onClick={() => openLightbox(i)}
-              className="relative bg-[var(--color-surface)] cursor-pointer overflow-hidden group"
+              className="relative cursor-pointer overflow-hidden group"
               style={{ height: `${200 + (i % 3) * 100}px` }}
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <span className="text-[var(--color-text-secondary)]">Image {i + 1}</span>
-              </div>
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
+              <img src={image.src} alt={image.alt} className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300"></div>
             </div>
           ))}
         </Reveal>
@@ -224,17 +240,21 @@ const Home: React.FC = () => {
 
       {/* Lightbox Overlay */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
           <button 
             onClick={closeLightbox}
             className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors"
           >
             <X size={32} />
           </button>
-          <div className="w-full max-w-5xl aspect-video bg-[var(--color-surface)] flex items-center justify-center">
-            <span className="text-2xl text-[var(--color-text-secondary)]">
-              Full Size Image {activeImage !== null ? activeImage + 1 : ''} Placeholder
-            </span>
+          <div className="w-full max-w-5xl flex items-center justify-center">
+            {activeImage !== null && (
+              <img
+                src={galleryImages[activeImage].src}
+                alt={galleryImages[activeImage].alt}
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+            )}
           </div>
         </div>
       )}
