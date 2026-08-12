@@ -12,9 +12,10 @@ const Navbar: React.FC = () => {
   const links = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Videography', path: '/videography' },
-    { name: 'Photography', path: '/photography' },
+    { name: 'Video', path: '/videography' },
+    { name: 'Photo', path: '/photography' },
   ];
+
 
   const closeMenu = () => setIsOpen(false);
 

@@ -30,7 +30,15 @@ const VideoDetail: React.FC = () => {
       
       {/* 1. Video Embed Placeholder */}
       <Reveal>
-        <div className="aspect-video w-full bg-[var(--color-surface)] flex flex-col items-center justify-center mb-10 relative group">
+        <a
+          href={video.youtubeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block aspect-video w-full bg-[var(--color-surface)] flex flex-col items-center justify-center mb-10 relative group"
+        >
+          <div className="absolute inset-0">
+            <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+          </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center z-10 transition-all group-hover:bg-opacity-50">
             <div className="w-20 h-20 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-2 cursor-pointer hover:scale-110 transition-transform mb-4">
               <Play size={32} className="text-white" />
@@ -39,15 +47,13 @@ const VideoDetail: React.FC = () => {
               Watch on YouTube
             </span>
           </div>
-        </div>
+        </a>
       </Reveal>
 
       <Reveal className="max-w-4xl">
         {/* 2. Category & Date */}
         <div className="flex items-center gap-4 mb-4 text-sm font-semibold uppercase tracking-widest text-gray-400 font-body">
           <span>{video.category}</span>
-          <span className="text-gray-600">&bull;</span>
-          <span>{video.date || '11/15/25'}</span>
         </div>
         
         {/* 3. Title */}
@@ -63,7 +69,7 @@ const VideoDetail: React.FC = () => {
         {/* 5. Roles */}
         <div className="text-gray-400 border-t border-[var(--color-surface)] pt-6 font-body mb-16">
           <span className="font-bold text-white uppercase tracking-wider text-sm mr-4">Roles:</span>
-          Director, Cinematographer, Editor
+          {video.role}
         </div>
       </Reveal>
 

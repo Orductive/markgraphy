@@ -60,7 +60,7 @@ const AnimatedOutlet: React.FC = () => {
     }
   }, [location.pathname, currentOutlet, displayLocation.pathname, displayOutlet]);
 
-  return <div ref={wrapperRef}>{displayOutlet}</div>;
+  return <div ref={wrapperRef} style={{ position: 'relative' }}>{displayOutlet}</div>;
 };
 
 export default AnimatedOutlet;
