@@ -190,7 +190,7 @@ const Home: React.FC = () => {
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <Reveal>
-              <h2 className="text-[77px] font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">CONTACT ME.</h2>
+              <h2 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">CONTACT ME.</h2>
             </Reveal>
             <Reveal className="w-full">
               <form className="space-y-8 font-body">
