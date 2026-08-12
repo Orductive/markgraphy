@@ -63,7 +63,7 @@ const Home: React.FC = () => {
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
         <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Reveal y={50} duration={1} delay={0.2}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl mb-6">MARKGRAPHY</h1>
+            <h1 className="text-6xl md:text-8xl lg:text-9xl mb-6">MARRKGRAPHY</h1>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">

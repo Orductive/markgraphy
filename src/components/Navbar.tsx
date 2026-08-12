@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
           {/* Logo / Brand (Center) */}
           <div className="flex-1 flex justify-center items-center">
             <Link to="/" className="text-2xl font-heading uppercase font-semibold tracking-wide" onClick={closeMenu}>
-              MARKGRAPHY
+              <img src="/marrk-white.png" alt="Marrkgraphy" style={{ height: '32px', width: 'auto' }} />
             </Link>
           </div>
 
