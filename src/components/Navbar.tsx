@@ -12,9 +12,10 @@ const Navbar: React.FC = () => {
   const links = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Videography', path: '/videography' },
-    { name: 'Photography', path: '/photography' },
+    { name: 'Video', path: '/videography' },
+    { name: 'Photo', path: '/photography' },
   ];
+
 
   const closeMenu = () => setIsOpen(false);
 
@@ -56,7 +57,7 @@ const Navbar: React.FC = () => {
         isHidden ? '-translate-y-full' : 'translate-y-0'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-6 lg:px-10">
         <div className="flex justify-between items-center h-20">
           
           {/* Mobile Menu Button (Left on mobile) */}
@@ -85,13 +86,6 @@ const Navbar: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-          </div>
-
-          {/* Logo / Brand (Center) */}
-          <div className="flex-1 flex justify-center items-center">
-            <Link to="/" className="text-2xl font-heading uppercase font-semibold tracking-wide" onClick={closeMenu}>
-              MARKGRAPHY
-            </Link>
           </div>
 
           {/* Contact CTA (Right) */}

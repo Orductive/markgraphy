@@ -13,10 +13,19 @@ const Photography: React.FC = () => {
         {albums.map((album) => (
           <Link key={album.id} to={`/photography/${album.id}`} className="group block cursor-pointer">
             {/* Image Placeholder */}
-            <div className="aspect-square w-full bg-[var(--color-surface)] flex items-center justify-center mb-6 overflow-hidden relative">
-              <img src={album.coverImage} alt={album.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-0 transition-all duration-500 z-10"></div>
-            </div>
+            <div
+              style={{
+                width: '100%',
+                paddingBottom: '100%',
+                position: 'relative',
+                overflow: 'hidden',
+                backgroundImage: `url(${album.coverImage}?tr=w-600)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+                marginBottom: '1.5rem',
+              }}
+              className="transition-transform duration-700 group-hover:scale-105"
+            />
             {/* Details */}
             <div>
               <h3 className="text-2xl text-white mb-2 group-hover:text-[var(--color-accent)] transition-colors flex items-center justify-between font-heading">
