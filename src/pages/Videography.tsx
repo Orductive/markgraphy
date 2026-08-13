@@ -24,13 +24,13 @@ const Videography: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-start">
         
         {/* Sidebar Filters */}
-        <div className="w-full lg:w-1/5 mb-12 lg:mb-0 lg:pr-8 lg:sticky lg:top-24">
-          <div className="flex flex-col space-y-6">
+        <div className="w-full lg:w-1/5 mb-8 lg:mb-0 lg:pr-8 lg:sticky lg:top-24">
+          <div className="flex flex-row flex-wrap lg:flex-col gap-4 sm:gap-6 lg:space-y-6 lg:gap-0">
             {['All', 'Documentaries', 'Series', 'Corporate & Brand', 'Collaborations', 'Shortform'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab as any)}
-                className={`text-left transition-colors font-body text-sm uppercase tracking-widest ${
+                className={`text-left transition-colors font-body text-xs sm:text-sm uppercase tracking-widest whitespace-nowrap ${
                   filter === tab 
                     ? 'text-[var(--color-accent)] font-bold' 
                     : 'text-gray-400 hover:text-white'

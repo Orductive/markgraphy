@@ -63,10 +63,10 @@ const Home: React.FC = () => {
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
         <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Reveal y={50} duration={1} delay={0.2}>
-            <img src="/marrk-white.png" alt="Marrkgraphy" style={{ height: '120px', width: 'auto', marginBottom: '1.5rem' }} />
+            <img src="/marrk-white.png" alt="Marrkgraphy" className="h-[80px] md:h-[120px] w-auto mb-6" />
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
-            <p className="text-lg md:text-xl text-white uppercase tracking-widest mb-4">Bismark Akoto | Visual Storyteller</p>
+            <p className="text-base md:text-xl text-white uppercase tracking-widest mb-4">Bismark Akoto | Visual Storyteller</p>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.9}>
             <p className="text-sm text-gray-300 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
@@ -108,7 +108,7 @@ const Home: React.FC = () => {
       {/* 3. Story Sells */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] text-center overflow-hidden bg-[var(--color-background)]">
         <Reveal>
-          <h2 className="text-6xl md:text-8xl font-heading uppercase tracking-tight leading-none mb-6">STORY SELLS.</h2>
+          <h2 className="text-5xl md:text-8xl font-heading uppercase tracking-tight leading-none mb-6">STORY SELLS.</h2>
           <p className="text-gray-400 max-w-3xl mx-auto mb-16 leading-relaxed">
             People don't buy what you do; they buy why you do it. Every frame tells a story — let's make yours unforgettable.
           </p>
@@ -175,7 +175,7 @@ const Home: React.FC = () => {
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] overflow-hidden bg-[var(--color-background)]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <Reveal>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-heading uppercase tracking-tight leading-none">Services</h2>
+            <h2 className="text-5xl md:text-8xl lg:text-9xl font-heading uppercase tracking-tight leading-none">Services</h2>
           </Reveal>
           <Reveal className="w-full">
             <Accordion items={servicesData} defaultOpenId="videography" />
@@ -188,7 +188,7 @@ const Home: React.FC = () => {
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <Reveal>
-              <h2 className="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">CONTACT ME.</h2>
+              <h2 className="text-5xl md:text-8xl lg:text-9xl font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">CONTACT ME.</h2>
             </Reveal>
             <Reveal className="w-full">
               <form className="space-y-8 font-body">

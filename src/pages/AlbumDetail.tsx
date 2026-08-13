@@ -26,8 +26,8 @@ const AlbumDetail: React.FC = () => {
       </div>
 
       <Reveal className="mb-16">
-        <h1 className="font-heading text-5xl md:text-7xl mb-6">{album.title}</h1>
-        <p className="text-xl text-gray-400 max-w-3xl leading-relaxed">{album.description}</p>
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl mb-6">{album.title}</h1>
+        <p className="text-lg sm:text-xl text-gray-400 max-w-3xl leading-relaxed">{album.description}</p>
       </Reveal>
 
       {album.subAlbums && album.subAlbums.length > 0 ? (
@@ -85,7 +85,7 @@ const AlbumDetail: React.FC = () => {
               <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors">
                 <X size={32} />
               </button>
-              <div className="w-full h-full p-12 flex flex-col items-center justify-center">
+              <div className="w-full h-full p-4 md:p-12 flex flex-col items-center justify-center">
                 <img src={album.images[activeImageIndex]} alt={`Full size ${activeImageIndex + 1}`} className="max-w-full max-h-full object-contain" />
                 <div className="mt-4 text-gray-400">{activeImageIndex + 1} / {album.images.length}</div>
               </div>

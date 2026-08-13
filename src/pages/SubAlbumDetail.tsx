@@ -32,7 +32,7 @@ const SubAlbumDetail: React.FC = () => {
       </div>
 
       <Reveal className="mb-16">
-        <h1 className="font-heading text-5xl md:text-7xl mb-6">{subAlbum.title}</h1>
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl mb-6">{subAlbum.title}</h1>
       </Reveal>
 
       {subAlbum.subFolders && subAlbum.subFolders.length > 0 ? (
@@ -74,7 +74,7 @@ const SubAlbumDetail: React.FC = () => {
               <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors">
                 <X size={32} />
               </button>
-              <div className="w-full h-full p-12 flex flex-col items-center justify-center">
+              <div className="w-full h-full p-4 md:p-12 flex flex-col items-center justify-center">
                 <img src={subAlbum.images[activeImageIndex]} alt={`Full size ${activeImageIndex + 1}`} className="max-w-full max-h-full object-contain" />
                 <div className="mt-4 text-gray-400">{activeImageIndex + 1} / {subAlbum.images.length}</div>
               </div>

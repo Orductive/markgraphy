@@ -44,7 +44,7 @@ const VideoDetail: React.FC = () => {
       
       {/* 1. Video Embed Placeholder */}
       {video.category === 'Shortform' ? (
-        <div style={{ maxWidth: '400px', margin: '0 auto 2.5rem' }}>
+        <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto 2.5rem' }}>
           <div style={{ position: 'relative', paddingTop: '177.78%', overflow: 'hidden' }}>
             <iframe
               src={`https://www.youtube.com/embed/${getYouTubeId(video.youtubeUrl)}`}
@@ -91,8 +91,8 @@ const VideoDetail: React.FC = () => {
       </Reveal>
 
       {/* 6. Navigation Control */}
-      <div className="grid grid-cols-2 gap-4 border-t border-b border-[var(--color-surface)] py-10 mb-24">
-        <div className="text-left">
+      <div className="flex flex-col md:flex-row gap-8 justify-between border-t border-b border-[var(--color-surface)] py-10 mb-24">
+        <div className="text-left w-full md:w-auto">
           {prevVideo && (
             <Link 
               to={`/videography/${prevVideo.id}`} 
@@ -106,11 +106,11 @@ const VideoDetail: React.FC = () => {
             </Link>
           )}
         </div>
-        <div className="text-right flex justify-end">
+        <div className="text-left md:text-right flex justify-start md:justify-end w-full md:w-auto">
           {nextVideo && (
             <Link 
               to={`/videography/${nextVideo.id}`} 
-              className="group inline-flex flex-col items-end"
+              className="group inline-flex flex-col items-start md:items-end"
             >
               <span className="text-gray-500 font-body text-xs uppercase tracking-widest mb-2 group-hover:text-[var(--color-accent)] transition-colors">Next</span>
               <span className="flex items-center gap-3 font-heading text-2xl md:text-3xl uppercase tracking-tight text-white group-hover:text-[var(--color-accent)] transition-colors">
