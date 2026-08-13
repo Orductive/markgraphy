@@ -36,7 +36,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 3000);
+    }, 7000);
     return () => clearInterval(interval);
   }, [heroImages.length]);
 
@@ -63,15 +63,13 @@ const Home: React.FC = () => {
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
         <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Reveal y={50} duration={1} delay={0.2}>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl mb-6">MARRKGRAPHY</h1>
+            <img src="/marrk-white.png" alt="Marrkgraphy" style={{ height: '120px', width: 'auto', marginBottom: '1.5rem' }} />
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-              Creating bold, immersive stories that leave a lasting impression.
-            </p>
+            <p className="text-lg md:text-xl text-white uppercase tracking-widest mb-4">Bismark Akoto | Visual Storyteller</p>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.9}>
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-10">Bismark Akoto | Visual Storyteller</p>
+            <p className="text-sm text-gray-300 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
           </Reveal>
           <Link
             to="/contact"
@@ -90,7 +88,7 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden' }}>
             <img
-              src="https://ik.imagekit.io/orductive/photography/Profile/h.jpg"
+              src="https://ik.imagekit.io/orductive/photography/Profile/Official-Headshot.JPG"
               alt="Bismark Akoto"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />

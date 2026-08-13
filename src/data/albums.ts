@@ -1,8 +1,16 @@
+export interface SubFolder {
+  id: string;
+  title: string;
+  coverImage: string;
+  images: string[];
+}
+
 export interface SubAlbum {
   id: string;
   title: string;
   coverImage: string;
   images: string[];
+  subFolders?: SubFolder[];
 }
 
 export interface Album {
@@ -21,7 +29,7 @@ export const albums: Album[] = [
     id: 'character-studies',
     title: 'Character Studies',
     description: 'Every face holds a story before a single word is spoken.',
-    coverImage: `${IK}/Character%20Studies/Cover.jpg`,
+    coverImage: `${IK}/Character%20Studies/IMG_0627.jpg`,
     images: [
       `${IK}/Character%20Studies/Cover.jpg`,
       `${IK}/Character%20Studies/_MKG_-10.jpg`,
@@ -58,7 +66,7 @@ export const albums: Album[] = [
       {
         id: 'black-stars-of-ghana',
         title: 'Black Stars of Ghana',
-        coverImage: `${IK}/FIFA%20World%20Cup/Black%20Stars%20of%20Ghana/Cover.jpg`,
+        coverImage: `${IK}/FIFA%20World%20Cup/Black%20Stars%20of%20Ghana/9.png`,
         images: [
           `${IK}/FIFA%20World%20Cup/Black%20Stars%20of%20Ghana/Cover.jpg`,
           `${IK}/FIFA%20World%20Cup/Black%20Stars%20of%20Ghana/2.png`,
@@ -85,7 +93,7 @@ export const albums: Album[] = [
       {
         id: 'boston-fanfestival',
         title: 'Boston FanFestival',
-        coverImage: `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/IMG_0217.jpg`,
+        coverImage: `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/8.png`,
         images: [
           `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/Cover.jpg`,
           `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/2.png`,
@@ -142,35 +150,76 @@ export const albums: Album[] = [
         id: 'meshack-and-yani',
         title: 'Meshack & Yani',
         coverImage: `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063870.jpg`,
-        images: [
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0037.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0076.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0091.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0093.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0215.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0239.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0248.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0259.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0025.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0038.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0041.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0054.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0055.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0096.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0116.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0118.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0126.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0130.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0166.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0176.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0187.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0207.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063870.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063878.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063884.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063898.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063900.jpg`,
-          `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063902.jpg`,
+        images: [],
+        subFolders: [
+          {
+            id: 'the-ceremony',
+            title: 'The Ceremony',
+            coverImage: `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0004.jpg`,
+            images: [
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0004.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0015.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0024.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0034.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0037.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0071.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0076.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0091.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0093.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0149.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0151.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0153.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0158.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0192.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0215.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0217.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0231.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0239.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0248.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Ceremony/IMG_0259.jpg`,
+            ],
+          },
+          {
+            id: 'the-details',
+            title: 'The Details',
+            coverImage: `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0196.jpg`,
+            images: [
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0025.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0038.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0041.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0054.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0055.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0066.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0067.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0096.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0116.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0118.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0126.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0130.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0134.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0159.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0163.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0166.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0176.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0187.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0196.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0207.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20details/IMG_0235.jpg`,
+            ],
+          },
+          {
+            id: 'the-preparation',
+            title: 'The Preparation',
+            coverImage: `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063878.jpg`,
+            images: [
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063870.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063878.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063884.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063898.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063900.jpg`,
+              `${IK}/Love,%20Witnessed/Meshack%20&%20Yani/The%20Preparation/P1063902.jpg`,
+            ],
+          },
         ],
       },
     ],

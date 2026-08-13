@@ -8,6 +8,7 @@ import VideoDetail from './pages/VideoDetail';
 import Photography from './pages/Photography';
 import AlbumDetail from './pages/AlbumDetail';
 import SubAlbumDetail from './pages/SubAlbumDetail';
+import SubFolderDetail from './pages/SubFolderDetail';
 import Contact from './pages/Contact';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="photography" element={<Photography />} />
             <Route path="photography/:albumId" element={<AlbumDetail />} />
             <Route path="photography/:albumId/:subAlbumId" element={<SubAlbumDetail />} />
+            <Route path="photography/:albumId/:subAlbumId/:subFolderId" element={<SubFolderDetail />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>

@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
 import { videos, type Video } from '../data/videos';
 import Reveal from '../components/Reveal';
 
 const VideoDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  const getYouTubeId = (url: string): string => {
+    if (url.includes('watch?v=')) return url.split('watch?v=')[1].split('&')[0];
+    if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
+    if (url.includes('/shorts/')) return url.split('/shorts/')[1].split('?')[0];
+    if (url.includes('/embed/')) return url.split('/embed/')[1].split('?')[0];
+    return url.split('/').pop()?.split('?')[0] || '';
+  };
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,27 +37,35 @@ const VideoDetail: React.FC = () => {
   return (
     <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8 py-24 text-white min-h-screen">
       
+      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-widest font-semibold mb-10">
+        <ArrowLeft size={20} />
+        Back to Videos
+      </button>
+      
       {/* 1. Video Embed Placeholder */}
-      <Reveal>
-        <a
-          href={video.youtubeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block aspect-video w-full bg-[var(--color-surface)] flex flex-col items-center justify-center mb-10 relative group"
-        >
-          <div className="absolute inset-0">
-            <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover" />
+      {video.category === 'Shortform' ? (
+        <div style={{ maxWidth: '400px', margin: '0 auto 2.5rem' }}>
+          <div style={{ position: 'relative', paddingTop: '177.78%', overflow: 'hidden' }}>
+            <iframe
+              src={`https://www.youtube.com/embed/${getYouTubeId(video.youtubeUrl)}`}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
           </div>
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center z-10 transition-all group-hover:bg-opacity-50">
-            <div className="w-20 h-20 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-2 cursor-pointer hover:scale-110 transition-transform mb-4">
-              <Play size={32} className="text-white" />
-            </div>
-            <span className="text-white font-body text-sm tracking-widest uppercase hover:underline cursor-pointer">
-              Watch on YouTube
-            </span>
-          </div>
-        </a>
-      </Reveal>
+        </div>
+      ) : (
+        <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', marginBottom: '2.5rem' }}>
+          <iframe
+            src={`https://www.youtube.com/embed/${getYouTubeId(video.youtubeUrl)}`}
+            title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+          />
+        </div>
+      )}
 
       <Reveal className="max-w-4xl">
         {/* 2. Category & Date */}
@@ -57,7 +74,7 @@ const VideoDetail: React.FC = () => {
         </div>
         
         {/* 3. Title */}
-        <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl mb-8 uppercase leading-tight tracking-tight">
+        <h1 className="font-heading text-4xl md:text-5xl mb-8 uppercase leading-tight tracking-tight">
           {video.title}
         </h1>
 
@@ -122,17 +139,23 @@ const VideoDetail: React.FC = () => {
 
 const SimilarVideoCard: React.FC<{ video: Video }> = ({ video }) => (
   <Link to={`/videography/${video.id}`} className="group block cursor-pointer">
-    <div className="relative aspect-[3/2] bg-[var(--color-surface)] flex items-center justify-center overflow-hidden mb-[20px]">
-      <img 
-        src={video.thumbnail} 
-        alt={video.title} 
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-10 transition-colors z-10 flex items-center justify-center">
-         <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform opacity-0 group-hover:opacity-100">
-            <Play size={24} className="text-white" />
-         </div>
+    <div
+      style={{
+        position: 'relative',
+        paddingBottom: '66.67%',
+        overflow: 'hidden',
+        marginBottom: '20px',
+        backgroundImage: `url(${video.thumbnail})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
+        className="group-hover:bg-opacity-10 transition-colors"
+      >
+        <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform opacity-0 group-hover:opacity-100">
+          <Play size={24} className="text-white" />
+        </div>
       </div>
     </div>
     <span className="text-[var(--color-accent)] text-xs uppercase tracking-wider block mb-1 font-semibold">{video.category}</span>

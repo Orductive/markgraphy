@@ -19,9 +19,9 @@ const Photography: React.FC = () => {
                 paddingBottom: '100%',
                 position: 'relative',
                 overflow: 'hidden',
-                backgroundImage: `url(${album.coverImage})`,
+                backgroundImage: `url(${album.coverImage}?tr=w-600)`,
                 backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundPosition: 'center top',
                 marginBottom: '1.5rem',
               }}
               className="transition-transform duration-700 group-hover:scale-105"

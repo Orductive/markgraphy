@@ -40,9 +40,9 @@ const AlbumDetail: React.FC = () => {
                   paddingBottom: '100%',
                   position: 'relative',
                   overflow: 'hidden',
-                  backgroundImage: `url(${sub.coverImage})`,
+                  backgroundImage: `url(${sub.coverImage}?tr=w-600)`,
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundPosition: 'center top',
                   marginBottom: '1.5rem',
                 }}
                 className="transition-transform duration-700 group-hover:scale-105"
@@ -67,7 +67,7 @@ const AlbumDetail: React.FC = () => {
                 style={{ marginBottom: '1.5rem' }}
               >
                 <img
-                  src={imgSrc}
+                  src={`${imgSrc}?tr=w-800`}
                   alt={`Photo ${i + 1}`}
                   style={{
                     width: '100%',

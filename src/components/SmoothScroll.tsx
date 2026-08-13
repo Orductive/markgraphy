@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLocation } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Augment window object for TS
 declare global {
   interface Window {
     lenis: Lenis;
@@ -17,31 +17,34 @@ interface SmoothScrollProps {
 }
 
 const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
+  const location = useLocation();
+
   useEffect(() => {
+    // Pages that should use fast native scroll (image/video heavy)
+    const nativeScrollPaths = ['/photography', '/videography'];
+    const useNative = nativeScrollPaths.some((path) => location.pathname.startsWith(path));
+
+    if (useNative) return;
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => 1 - Math.pow(1 - t, 4),
+      duration: 0.9,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.2,
       infinite: false,
     });
 
-    // Keep ScrollTrigger in sync with Lenis
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Bind Lenis's requestAnimationFrame to GSAP's ticker
     const update = (time: number) => {
       lenis.raf(time * 1000);
     };
     gsap.ticker.add(update);
-
-    // Prevent GSAP from trying to catch up on dropped frames
     gsap.ticker.lagSmoothing(0);
 
-    // Make lenis globally available for smooth scrolling to anchors
     window.lenis = lenis;
 
     return () => {
@@ -51,7 +54,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
       // @ts-ignore
       delete window.lenis;
     };
-  }, []);
+  }, [location.pathname]);
 
   return <>{children}</>;
 };

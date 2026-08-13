@@ -35,38 +35,52 @@ const SubAlbumDetail: React.FC = () => {
         <h1 className="font-heading text-5xl md:text-7xl mb-6">{subAlbum.title}</h1>
       </Reveal>
 
-      <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-          {subAlbum.images.map((imgSrc, i) => (
-            <div
-              key={i}
-              onClick={() => openLightbox(i)}
-              className="break-inside-avoid cursor-pointer group"
-              style={{ marginBottom: '1.5rem' }}
-            >
-              <img
-                src={imgSrc}
-                alt={`Photo ${i + 1}`}
+      {subAlbum.subFolders && subAlbum.subFolders.length > 0 ? (
+        <Reveal staggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {subAlbum.subFolders.map((folder) => (
+            <Link key={folder.id} to={`/photography/${album.id}/${subAlbum.id}/${folder.id}`} className="group block cursor-pointer">
+              <div
                 style={{
                   width: '100%',
-                  height: 'auto',
-                  display: 'block',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  backgroundImage: `url(${folder.coverImage}?tr=w-600)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center 30%',
+                  marginBottom: '1.5rem',
                 }}
                 className="transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
+              <h3 className="text-2xl text-white mb-2 group-hover:text-[var(--color-accent)] transition-colors flex items-center justify-between font-heading">
+                {folder.title}
+                <span className="text-xs uppercase tracking-widest text-[var(--color-text-secondary)] group-hover:text-[var(--color-accent)] font-sans">View Album &rarr;</span>
+              </h3>
+            </Link>
           ))}
-      </Reveal>
+        </Reveal>
+      ) : (
+        <>
+          <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            {subAlbum.images.map((imgSrc, i) => (
+              <div key={i} onClick={() => openLightbox(i)} className="break-inside-avoid cursor-pointer group" style={{ marginBottom: '1.5rem' }}>
+                <img src={`${imgSrc}?tr=w-800`} alt={`Photo ${i + 1}`} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} className="transition-transform duration-700 group-hover:scale-105" />
+              </div>
+            ))}
+          </Reveal>
 
-      {lightboxOpen && activeImageIndex !== null && (
-        <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
-          <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors">
-            <X size={32} />
-          </button>
-          <div className="w-full h-full p-12 flex flex-col items-center justify-center">
-            <img src={subAlbum.images[activeImageIndex]} alt={`Full size ${activeImageIndex + 1}`} className="max-w-full max-h-full object-contain" />
-            <div className="mt-4 text-gray-400">{activeImageIndex + 1} / {subAlbum.images.length}</div>
-          </div>
-        </div>
+          {lightboxOpen && activeImageIndex !== null && (
+            <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
+              <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors">
+                <X size={32} />
+              </button>
+              <div className="w-full h-full p-12 flex flex-col items-center justify-center">
+                <img src={subAlbum.images[activeImageIndex]} alt={`Full size ${activeImageIndex + 1}`} className="max-w-full max-h-full object-contain" />
+                <div className="mt-4 text-gray-400">{activeImageIndex + 1} / {subAlbum.images.length}</div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

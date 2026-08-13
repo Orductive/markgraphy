@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import { videos } from '../data/videos';
 import Reveal from '../components/Reveal';
 
 const Videography: React.FC = () => {
-  const [filter, setFilter] = useState<'All' | 'Documentaries' | 'Brand Storytelling'>('All');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = searchParams.get('category') || 'All';
+  const setFilter = (cat: string) => {
+    if (cat === 'All') {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category: cat });
+    }
+  };
 
   const filteredVideos = filter === 'All' 
     ? videos 
@@ -18,7 +26,7 @@ const Videography: React.FC = () => {
         {/* Sidebar Filters */}
         <div className="w-full lg:w-1/5 mb-12 lg:mb-0 lg:pr-8 lg:sticky lg:top-24">
           <div className="flex flex-col space-y-6">
-            {['All', 'Documentaries', 'Brand Storytelling'].map((tab) => (
+            {['All', 'Documentaries', 'Series', 'Corporate & Brand', 'Collaborations', 'Shortform'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab as any)}
@@ -36,7 +44,7 @@ const Videography: React.FC = () => {
         
         {/* Video Grid */}
         <div className="w-full lg:w-4/5">
-          <Reveal staggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
+          <Reveal staggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-x-[30px] gap-y-[60px]">
             {filteredVideos.map((project) => (
               <VideoCard key={project.id} project={project} />
             ))}
@@ -54,14 +62,20 @@ const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
       to={`/videography/${project.id}`} 
       className="group block cursor-pointer"
     >
-      <div className="relative aspect-[3/2] bg-[var(--color-surface)] flex items-center justify-center overflow-hidden mb-[20px]">
-        <img 
-          src={project.thumbnail} 
-          alt={project.title} 
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-20 transition-all z-10">
+      <div 
+        style={{
+          position: 'relative',
+          paddingBottom: '66.67%',
+          overflow: 'hidden',
+          marginBottom: '20px',
+          backgroundImage: `url(${project.thumbnail})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}
+          className="group-hover:bg-opacity-20 transition-all"
+        >
           <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform">
             <Play size={24} className="text-white" />
           </div>
@@ -71,9 +85,13 @@ const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
         <span className="text-xs text-[var(--color-accent)] uppercase tracking-wider block mb-1 font-semibold">
           {project.category}
         </span>
-        <h3 className="text-2xl text-white font-heading uppercase">
+        <h3 className="text-2xl text-white font-heading uppercase mb-2">
           {project.title}
         </h3>
+        <p className="text-sm text-gray-400 leading-relaxed mb-2">{project.description}</p>
+        {project.role && (
+          <p className="text-sm text-gray-500 italic">Role: {project.role}</p>
+        )}
       </div>
     </Link>
   );
