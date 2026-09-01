@@ -29,17 +29,29 @@ const About: React.FC = () => {
           </div>
         </Reveal>
 
-        {/* Profile Image */}
+        {/* Profile Images */}
         <div className="w-full lg:w-1/2 lg:sticky lg:top-[100px] flex-shrink-0">
-          <div
-            style={{
-              width: '100%',
-              paddingBottom: '125%',
-              backgroundImage: 'url(https://ik.imagekit.io/orductive/photography/Profile/h.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
+          {/* Large top photo */}
+          <div style={{ marginBottom: '0.75rem', overflow: 'hidden' }}>
+            <img
+              src="https://ik.imagekit.io/orductive/photography/myStory/h.jpg?tr=cm-extract,x-450,y-450,w-2300,h-3100"
+              alt="Bismark Akoto"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+          {/* Two smaller photos side by side */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '0.75rem' }}>
+            <img
+              src="https://ik.imagekit.io/orductive/photography/myStory/IMG_3273.JPG"
+              alt="Bismark Akoto"
+              style={{ width: '100%', height: '300px', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+            />
+            <img
+              src="https://ik.imagekit.io/orductive/photography/myStory/IMG_3328.jpg"
+              alt="Bismark Akoto"
+              style={{ width: '100%', height: '300px', objectFit: 'cover', objectPosition: 'center bottom', display: 'block' }}
+            />
+          </div>
         </div>
 
       </div>

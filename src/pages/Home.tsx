@@ -62,20 +62,23 @@ const Home: React.FC = () => {
       }}>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
         <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Reveal y={50} duration={1} delay={0.2}>
-            <img src="/marrk-white.png" alt="Marrkgraphy" className="h-[80px] md:h-[120px] w-auto mb-6" />
+
+          <Reveal y={20} duration={0.8} delay={0.6}>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: '300', letterSpacing: '0.2em', color: 'white', marginBottom: '0.5rem' }}>
+              Bismark Akoto
+            </h1>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
-            <p className="text-base md:text-xl text-white uppercase tracking-widest mb-4">Bismark Akoto | Visual Storyteller</p>
+            <p className="text-sm md:text-base text-gray-300 uppercase tracking-[0.3em] mb-4">The Visual Storyteller</p>
           </Reveal>
-          <Reveal y={20} duration={0.8} delay={0.9}>
-            <p className="text-sm text-gray-300 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
+          <Reveal y={20} duration={0.8} delay={0.8}>
+            <p className="text-sm text-gray-400 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
           </Reveal>
           <Link
-            to="/contact"
-            className="px-8 py-4 bg-[var(--color-accent)] text-white font-medium hover:bg-red-700 transition-colors uppercase tracking-widest text-sm rounded-full"
+            to="/photography"
+            className="px-8 py-4 border border-white text-white font-medium hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm rounded-full"
           >
-            Contact Me
+            View My Work
           </Link>
         </div>
         <div style={{ position: 'absolute', bottom: '2.5rem', zIndex: 20 }} className="animate-bounce">
@@ -90,7 +93,7 @@ const Home: React.FC = () => {
             <img
               src="https://ik.imagekit.io/orductive/photography/Profile/Official-Headshot.JPG"
               alt="Bismark Akoto"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(100%)' }}
             />
           </div>
           <Reveal>
@@ -150,22 +153,31 @@ const Home: React.FC = () => {
         </Reveal>
         <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
           {[
-            'https://ik.imagekit.io/orductive/photography/Character%20Studies/Cover.jpg',
-            'https://ik.imagekit.io/orductive/photography/Moments%20in%20Motion/Cover.jpg',
-            'https://ik.imagekit.io/orductive/photography/Monochrome/Cover.jpg',
-            'https://ik.imagekit.io/orductive/photography/The%20Edge%20of%20Effort/Cover.jpg',
-            'https://ik.imagekit.io/orductive/photography/The%20Unscripted/Cover.jpg',
-            'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/2.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/mkg-94.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0877%204.40.28%E2%80%AFPM.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/TBG-104.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/TBG-191.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0019.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/mkg-134.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0143.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0310.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0806.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/mkg-180.jpg',
+            'https://ik.imagekit.io/orductive/photography/gallery/IMG_0196.jpg',
           ].map((src, i) => (
-            <div key={i} onClick={() => openLightbox(i)} className="relative cursor-pointer overflow-hidden group break-inside-avoid">
+            <div
+              key={i}
+              onClick={() => openLightbox(i)}
+              className="break-inside-avoid cursor-pointer group"
+              style={{ marginBottom: '1rem' }}
+            >
               <img
-                src={src}
+                src={`${src}?tr=w-800`}
                 alt={`Gallery ${i + 1}`}
                 loading="lazy"
-                style={{ width: '100%', objectFit: 'cover', display: 'block' }}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
                 className="transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
             </div>
           ))}
         </Reveal>
@@ -224,12 +236,17 @@ const Home: React.FC = () => {
           </button>
           <div className="w-full max-w-5xl">
             <img src={[
-              'https://ik.imagekit.io/orductive/photography/Character%20Studies/Cover.jpg',
-              'https://ik.imagekit.io/orductive/photography/Moments%20in%20Motion/Cover.jpg',
-              'https://ik.imagekit.io/orductive/photography/Monochrome/Cover.jpg',
-              'https://ik.imagekit.io/orductive/photography/The%20Edge%20of%20Effort/Cover.jpg',
-              'https://ik.imagekit.io/orductive/photography/The%20Unscripted/Cover.jpg',
-              'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/2.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/mkg-94.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0877%204.40.28%E2%80%AFPM.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/TBG-104.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/TBG-191.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0019.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/mkg-134.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0143.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0310.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0806.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/mkg-180.jpg',
+              'https://ik.imagekit.io/orductive/photography/gallery/IMG_0196.jpg',
             ][activeImage ?? 0]} alt="Full size" className="max-w-full max-h-full object-contain mx-auto" />
           </div>
         </div>

@@ -88,6 +88,13 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
+          {/* Logo Center */}
+          <div className="hidden md:flex flex-1 justify-center items-center">
+            <Link to="/">
+              <img src="/marrk-white.png" alt="Marrkgraphy" style={{ height: '28px', width: 'auto' }} />
+            </Link>
+          </div>
+
           {/* Contact CTA (Right) */}
           <div className="flex-1 flex justify-end items-center">
             <Link
