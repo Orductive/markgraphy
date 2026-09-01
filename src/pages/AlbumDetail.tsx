@@ -58,27 +58,13 @@ const AlbumDetail: React.FC = () => {
         </Reveal>
       ) : (
         <>
-          <Reveal staggerChildren className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {album.images.map((imgSrc, i) => (
-              <div
-                key={i}
-                onClick={() => openLightbox(i)}
-                className="break-inside-avoid cursor-pointer group"
-                style={{ marginBottom: '1.5rem' }}
-              >
-                <img
-                  src={`${imgSrc}?tr=w-800`}
-                  alt={`Photo ${i + 1}`}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                  }}
-                  className="transition-transform duration-700 group-hover:scale-105"
-                />
+              <div key={i} onClick={() => openLightbox(i)} className="cursor-pointer group overflow-hidden">
+                <img src={`${imgSrc}?tr=w-800`} alt={`Photo ${i + 1}`} loading="lazy" style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} className="transition-transform duration-700 group-hover:scale-105" />
               </div>
             ))}
-          </Reveal>
+          </div>
 
           {lightboxOpen && activeImageIndex !== null && (
             <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
