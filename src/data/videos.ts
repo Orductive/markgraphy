@@ -37,15 +37,6 @@ export const videos: Video[] = [
     thumbnail: 'https://img.youtube.com/vi/Hs_V9UQu3tc/maxresdefault.jpg',
     role: 'Editing',
   },
-  {
-    id: 'doc-4',
-    title: 'The First Gen Story',
-    category: 'Documentaries',
-    description: 'A first-generation student on what it took to get to college — and stay there.',
-    youtubeUrl: 'https://www.instagram.com/reel/DQz4UPdlKu6/',
-    thumbnail: '',
-    role: 'Scripting, Directing, Filming, Editing',
-  },
 
   // ---- SERIES: Terries on the Quad ----
   {
