@@ -44,6 +44,7 @@ export const videos: Video[] = [
     description: 'A first-generation student on what it took to get to college — and stay there.',
     youtubeUrl: 'https://www.instagram.com/reel/DQz4UPdlKu6/',
     thumbnail: '',
+    role: 'Scripting, Directing, Filming, Editing',
   },
 
   // ---- SERIES: Terries on the Quad ----
@@ -122,6 +123,7 @@ export const videos: Video[] = [
     description: 'A surprise engagement, captured in the moment.',
     youtubeUrl: 'https://youtube.com/shorts/045sY_qAEig',
     thumbnail: 'https://img.youtube.com/vi/045sY_qAEig/maxresdefault.jpg',
+    role: 'Director, Editor',
   },
   {
     id: 'short-2',
@@ -130,5 +132,6 @@ export const videos: Video[] = [
     description: 'A classic car, still turning heads decades later.',
     youtubeUrl: 'https://youtube.com/shorts/sl9B4FwBVCo',
     thumbnail: 'https://img.youtube.com/vi/sl9B4FwBVCo/maxresdefault.jpg',
+    role: 'Director, Editor',
   },
 ];

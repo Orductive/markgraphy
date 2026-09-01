@@ -24,6 +24,7 @@ const Home: React.FC = () => {
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeImage, setActiveImage] = useState<number | null>(null);
+  const [playingVideoId, setPlayingVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     if (location.hash === '#contact') {
@@ -116,28 +117,50 @@ const Home: React.FC = () => {
             People don't buy what you do; they buy why you do it. Every frame tells a story — let's make yours unforgettable.
           </p>
         </Reveal>
-        <Reveal staggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
           {[
             { id: 'hv1iVQIfL8M', title: 'Serving Those Who Served' },
-            { id: 'Ca_zRAYyD5g', title: 'The People Behind the Brand' },
+            { id: '4rvAsaFJzwg', title: 'Terries on the Quad EP1' },
           ].map((video) => (
-            <a key={video.id} href={`https://youtu.be/${video.id}`} target="_blank" rel="noopener noreferrer" className="group relative aspect-video flex items-center justify-center cursor-pointer overflow-hidden" style={{ position: 'relative' }}>
-              <img
-                src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
-                alt={video.title}
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-20 transition-all">
-                <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform">
-                  <Play size={24} className="text-white" />
+            <div key={video.id} className="group cursor-pointer">
+              {playingVideoId === video.id ? (
+                <div style={{ position: 'relative', paddingBottom: '56.25%', overflow: 'hidden', marginBottom: '1rem' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}?autoplay=1`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                  />
                 </div>
+              ) : (
+                <div
+                  onClick={() => setPlayingVideoId(video.id)}
+                  style={{
+                    position: 'relative',
+                    paddingBottom: '56.25%',
+                    overflow: 'hidden',
+                    marginBottom: '1rem',
+                    backgroundImage: `url(https://img.youtube.com/vi/${video.id}/maxresdefault.jpg)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    className="group-hover:bg-opacity-20 transition-all">
+                    <div className="w-16 h-16 rounded-full bg-[var(--color-accent)] flex items-center justify-center pl-1 group-hover:scale-110 transition-transform">
+                      <Play size={24} className="text-white" />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className="mt-4">
+                <h3 className="text-xl font-heading uppercase text-white">{video.title}</h3>
               </div>
-              <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent">
-                <h3 className="text-xl font-heading uppercase">{video.title}</h3>
-              </div>
-            </a>
+            </div>
           ))}
-        </Reveal>
+        </div>
         <Link to="/videography" className="inline-block px-10 py-4 border border-[var(--color-accent)] text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-colors uppercase tracking-widest text-sm font-semibold">
           More of My Work
         </Link>
