@@ -29,7 +29,7 @@ export const albums: Album[] = [
     id: 'character-studies',
     title: 'Character Studies',
     description: 'Every face holds a story before a single word is spoken.',
-    coverImage: `${IK}/Character%20Studies/IMG_0627.jpg`,
+    coverImage: `${IK}/Character%20Studies/mkg-21.jpg`,
     images: [
       `${IK}/Character%20Studies/Cover.jpg`,
       `${IK}/Character%20Studies/_MKG_-10.jpg`,
@@ -61,7 +61,7 @@ export const albums: Album[] = [
     id: 'fifa-world-cup',
     title: 'FIFA World Cup',
     description: 'The passion, energy, and drama of the beautiful game on the world stage.',
-    coverImage: `${IK}/FIFA%20World%20Cup/Black%20Stars%20of%20Ghana/Cover.jpg`,
+    coverImage: `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/8.png`,
     images: [],
     subAlbums: [
       {
@@ -94,7 +94,7 @@ export const albums: Album[] = [
       {
         id: 'boston-fanfestival',
         title: 'Boston FanFestival',
-        coverImage: `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/8.png`,
+        coverImage: `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/2.png`,
         images: [
           `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/Cover.jpg`,
           `${IK}/FIFA%20World%20Cup/Boston%20FanFestival/2.png`,

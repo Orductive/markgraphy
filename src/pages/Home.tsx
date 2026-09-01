@@ -16,10 +16,6 @@ const Home: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const heroImages = [
     'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/1.jpg',
-    'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/2.jpg',
-    'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/3.jpg',
-    'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/4.jpg',
-    'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/5.jpg',
   ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
