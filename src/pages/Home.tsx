@@ -61,15 +61,15 @@ const Home: React.FC = () => {
         <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
           <Reveal y={20} duration={0.8} delay={0.6}>
-            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: '300', letterSpacing: '0.2em', color: 'white', marginBottom: '0.5rem' }}>
+            <h1 className="font-lazy-dark" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', letterSpacing: '0.2em', color: 'white', marginBottom: '0.5rem' }}>
               Bismark Akoto
             </h1>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.7}>
-            <p className="text-sm md:text-base text-gray-300 uppercase tracking-[0.3em] mb-4">The Visual Storyteller</p>
+            <p className="font-neulis font-normal text-sm md:text-base text-gray-300 uppercase tracking-[0.3em] mb-4">The Visual Storyteller</p>
           </Reveal>
           <Reveal y={20} duration={0.8} delay={0.8}>
-            <p className="text-sm text-gray-400 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
+            <p className="font-neulis font-thin text-sm text-gray-400 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
           </Reveal>
           <Link
             to="/photography"

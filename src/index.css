@@ -1,8 +1,11 @@
+@import "./styles/fonts.css";
 @import "tailwindcss";
 
 @theme {
   --font-heading: 'Anton', sans-serif;
   --font-body: 'DM Sans', sans-serif;
+  --font-lazy-dark: 'Lazy Dark Demo', cursive;
+  --font-neulis: 'Neulis Sans', sans-serif;
 }
 
 :root {
