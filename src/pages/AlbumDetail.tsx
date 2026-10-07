@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { albums } from '../data/albums';
 import Reveal from '../components/Reveal';
+import ExplicitColumnMasonry from '../components/ExplicitColumnMasonry';
 
 const AlbumDetail: React.FC = () => {
   const { albumId } = useParams<{ albumId: string }>();
@@ -13,6 +14,8 @@ const AlbumDetail: React.FC = () => {
 
   const album = albums.find((a) => a.id === albumId);
   if (!album) return <div className="text-center py-24 text-white">Album not found.</div>;
+
+  const isMasonryAlbum = album.id === 'character-studies' || album.id === 'moments-in-motion';
 
   const openLightbox = (index: number) => { setActiveImageIndex(index); setLightboxOpen(true); };
   const closeLightbox = () => { setLightboxOpen(false); setActiveImageIndex(null); };
@@ -58,13 +61,33 @@ const AlbumDetail: React.FC = () => {
         </Reveal>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {album.images.map((imgSrc, i) => (
-              <div key={i} onClick={() => openLightbox(i)} className="cursor-pointer group overflow-hidden">
-                <img src={`${imgSrc}?tr=w-800`} alt={`Photo ${i + 1}`} loading="lazy" style={{ width: '100%', height: '300px', objectFit: 'cover', display: 'block' }} className="transition-transform duration-700 group-hover:scale-105" />
-              </div>
-            ))}
-          </div>
+          {isMasonryAlbum ? (
+            <ExplicitColumnMasonry images={album.images} onOpenLightbox={openLightbox} />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {album.images.map((item, i) => {
+                const imgSrc = typeof item === 'string' ? item : item.src;
+                const objectPosition = typeof item === 'object' && item.objectPosition ? item.objectPosition : undefined;
+                return (
+                  <div key={i} onClick={() => openLightbox(i)} className="cursor-pointer group overflow-hidden">
+                    <img
+                      src={`${imgSrc}?tr=w-800`}
+                      alt={`Photo ${i + 1}`}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '300px',
+                        objectFit: 'cover',
+                        ...(objectPosition ? { objectPosition } : {}),
+                        display: 'block',
+                      }}
+                      className="transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {lightboxOpen && activeImageIndex !== null && (
             <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
@@ -72,7 +95,11 @@ const AlbumDetail: React.FC = () => {
                 <X size={32} />
               </button>
               <div className="w-full h-full p-4 md:p-12 flex flex-col items-center justify-center">
-                <img src={album.images[activeImageIndex]} alt={`Full size ${activeImageIndex + 1}`} className="max-w-full max-h-full object-contain" />
+                <img
+                  src={typeof album.images[activeImageIndex] === 'string' ? (album.images[activeImageIndex] as string) : (album.images[activeImageIndex] as { src: string }).src}
+                  alt={`Full size ${activeImageIndex + 1}`}
+                  className="max-w-full max-h-full object-contain"
+                />
                 <div className="mt-4 text-gray-400">{activeImageIndex + 1} / {album.images.length}</div>
               </div>
             </div>

@@ -13,12 +13,21 @@ export interface SubAlbum {
   subFolders?: SubFolder[];
 }
 
+export interface AlbumPhoto {
+  src: string;
+  width?: number;
+  height?: number;
+  objectPosition?: string;
+}
+
+export type AlbumImage = string | AlbumPhoto;
+
 export interface Album {
   id: string;
   title: string;
   description: string;
   coverImage: string;
-  images: string[];
+  images: AlbumImage[];
   subAlbums?: SubAlbum[];
 }
 
@@ -29,32 +38,33 @@ export const albums: Album[] = [
     id: 'character-studies',
     title: 'Character Studies',
     description: 'Every face holds a story before a single word is spoken.',
-    coverImage: `${IK}/Character%20Studies/mkg-21.jpg`,
+    coverImage: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`,
     images: [
-      `${IK}/Character%20Studies/Cover.jpg`,
-      `${IK}/Character%20Studies/_MKG_-10.jpg`,
-      `${IK}/Character%20Studies/_MKG_-11.jpg`,
-      `${IK}/Character%20Studies/_MKG_-9.jpg`,
-      `${IK}/Character%20Studies/IMG_0627.jpg`,
-      `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`,
-      `${IK}/Character%20Studies/IMG_0859%204.40.28%E2%80%AFPM.jpg`,
-      `${IK}/Character%20Studies/IMG_1009.jpg`,
-      `${IK}/Character%20Studies/IMG_1034.jpg`,
-      `${IK}/Character%20Studies/mkg-15.jpg`,
-      `${IK}/Character%20Studies/mkg-155.jpg`,
-      `${IK}/Character%20Studies/mkg-158.jpg`,
-      `${IK}/Character%20Studies/mkg-160.jpg`,
-      `${IK}/Character%20Studies/mkg-18.jpg`,
-      `${IK}/Character%20Studies/mkg-21.jpg`,
-      `${IK}/Character%20Studies/mkg-43.jpg`,
-      `${IK}/Character%20Studies/mkg-46.jpg`,
-      `${IK}/Character%20Studies/mkg-58.jpg`,
-      `${IK}/Character%20Studies/mkg-65.jpg`,
-      `${IK}/Character%20Studies/mkg-96.jpg`,
-      `${IK}/Character%20Studies/P1076582.jpg`,
-      `${IK}/Character%20Studies/P1076780.jpg`,
-      `${IK}/Character%20Studies/tc-504.jpg`,
-      `${IK}/Character%20Studies/tc-505.jpg`,
+      // Group 1: IMG_0877 4.40.28 PM.jpg, IMG_0859 4.40.28 PM.jpg, IMG_1034.jpg, IMG_1009.jpg
+      { src: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`, width: 3318, height: 4977 },
+      { src: `${IK}/Character%20Studies/IMG_0859%204.40.28%E2%80%AFPM.jpg`, width: 3432, height: 5148 },
+      { src: `${IK}/Character%20Studies/IMG_1034.jpg`, width: 3648, height: 5472 },
+      { src: `${IK}/Character%20Studies/IMG_1009.jpg`, width: 5160, height: 3440 },
+      // Group 2: mkg-155.jpg, mkg-160.jpg, mkg-158.jpg
+      { src: `${IK}/Character%20Studies/mkg-155.jpg`, width: 3426, height: 5139 },
+      { src: `${IK}/Character%20Studies/mkg-160.jpg`, width: 3417, height: 5125 },
+      { src: `${IK}/Character%20Studies/mkg-158.jpg`, width: 3417, height: 5125 },
+      // Group 3: mkg-96.jpg, mkg-65.jpg, mkg-18.jpg
+      { src: `${IK}/Character%20Studies/mkg-96.jpg`, width: 3310, height: 4965 },
+      { src: `${IK}/Character%20Studies/mkg-65.jpg`, width: 3434, height: 5151 },
+      { src: `${IK}/Character%20Studies/mkg-18.jpg`, width: 3319, height: 4978 },
+      // Group 4: Cover.jpg, _MKG_-9.jpg, _MKG_-10.jpg
+      { src: `${IK}/Character%20Studies/Cover.jpg`, width: 3456, height: 5184 },
+      { src: `${IK}/Character%20Studies/_MKG_-9.jpg`, width: 3456, height: 5184 },
+      { src: `${IK}/Character%20Studies/_MKG_-10.jpg`, width: 3456, height: 5184 },
+      // Group 5: mkg-46.jpg, mkg-43.jpg, mkg-21.jpg
+      { src: `${IK}/Character%20Studies/mkg-46.jpg`, width: 3511, height: 5266 },
+      { src: `${IK}/Character%20Studies/mkg-43.jpg`, width: 3545, height: 5318 },
+      { src: `${IK}/Character%20Studies/mkg-21.jpg`, width: 5422, height: 3615 },
+      // Group 6: P1076780.jpg, IMG_0627.jpg, P1076582.jpg
+      { src: `${IK}/Character%20Studies/P1076780.jpg`, width: 2338, height: 3507 },
+      { src: `${IK}/Character%20Studies/IMG_0627.jpg`, width: 3219, height: 4828 },
+      { src: `${IK}/Character%20Studies/P1076582.jpg`, width: 2338, height: 3507 },
     ],
   },
   {
@@ -231,34 +241,46 @@ export const albums: Album[] = [
     description: 'Where energy becomes memory, one frame at a time.',
     coverImage: `${IK}/Moments%20in%20Motion/Cover.jpg`,
     images: [
-      `${IK}/Moments%20in%20Motion/tc-227.jpg`,
-      `${IK}/Moments%20in%20Motion/tc-226.jpg`,
-      `${IK}/Moments%20in%20Motion/Tc-43.jpg`,
-      `${IK}/Moments%20in%20Motion/Tc-42.jpg`,
-      `${IK}/Moments%20in%20Motion/tc-22.jpg`,
-      `${IK}/Moments%20in%20Motion/tc-8.jpg`,
-      `${IK}/Moments%20in%20Motion/tc-6.jpg`,
-      `${IK}/Moments%20in%20Motion/tc-4.jpg`,
-      `${IK}/Moments%20in%20Motion/mkg-224.jpg`,
-      `${IK}/Moments%20in%20Motion/mkg-22.jpg`,
-      `${IK}/Moments%20in%20Motion/mkg-182.jpg`,
-      `${IK}/Moments%20in%20Motion/TBG-191.jpg`,
-      `${IK}/Moments%20in%20Motion/TBG-190.jpg`,
-      `${IK}/Moments%20in%20Motion/TBG-123.jpg`,
-      `${IK}/Moments%20in%20Motion/TBG-97.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0806.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0793.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0691.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0485.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0423.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0676.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0633.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0559.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0348.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0310.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0216.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0019.jpg`,
-      `${IK}/Moments%20in%20Motion/IMG_0015.jpg`,
+      // Group 1: tc-227.jpg, tc-226.jpg, tc-22.jpg, mkg-182.jpg, tc-4.jpg
+      { src: `${IK}/Moments%20in%20Motion/tc-227.jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/tc-226.jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/tc-22.jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/mkg-182.jpg`, width: 4689, height: 3126 },
+      { src: `${IK}/Moments%20in%20Motion/tc-4.jpg`, width: 5472, height: 3648 },
+      // Group 2: Tc-42.jpg, Tc-43.jpg, tc-8.jpg
+      { src: `${IK}/Moments%20in%20Motion/Tc-42.jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/Tc-43.jpg`, width: 5291, height: 3527 },
+      { src: `${IK}/Moments%20in%20Motion/tc-8.jpg`, width: 5472, height: 3648 },
+      // Group 3: TBG-104.jpg, TBG-97.jpg, TBG-190.jpg, TBG-191.jpg
+      { src: `${IK}/Moments%20in%20Motion/TBG-104.jpg`, width: 4767, height: 3178 },
+      { src: `${IK}/Moments%20in%20Motion/TBG-97.jpg`, width: 3401, height: 5101 },
+      { src: `${IK}/Moments%20in%20Motion/TBG-190.jpg`, width: 4372, height: 2915 },
+      { src: `${IK}/Moments%20in%20Motion/TBG-191.jpg`, width: 4372, height: 2915 },
+      // Group 4: IMG_0348.jpg, IMG_0485.jpg, IMG_0691.jpg, IMG_0676.jpg
+      { src: `${IK}/Moments%20in%20Motion/IMG_0348.jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0485.jpg`, width: 5109, height: 3406 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0691.jpg`, width: 5278, height: 3519 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0676.jpg`, width: 5425, height: 3617 },
+      // Group 5: tc-126 (1).jpg, IMG_0784.jpg, IMG_0793.jpg, Cover.jpg
+      { src: `${IK}/Moments%20in%20Motion/tc-126%20(1).jpg`, width: 5472, height: 3648 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0784.jpg`, width: 5425, height: 3617 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0793.jpg`, width: 3444, height: 2296 },
+      { src: `${IK}/Moments%20in%20Motion/Cover.jpg`, width: 5174, height: 3449 },
+      // Group 6: IMG_0015.jpg, IMG_0806.jpg, IMG_0019.jpg
+      { src: `${IK}/Moments%20in%20Motion/IMG_0015.jpg`, width: 5292, height: 3528 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0806.jpg`, width: 4441, height: 2961 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0019.jpg`, width: 5471, height: 3647 },
+      // Group 7: IMG_0310.jpg, IMG_0216.jpg
+      { src: `${IK}/Moments%20in%20Motion/IMG_0310.jpg`, width: 2733, height: 4099 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0216.jpg`, width: 4976, height: 3317 },
+      // Group 8: mkg-225.jpg, mkg-224.jpg, mkg-22.jpg
+      { src: `${IK}/Moments%20in%20Motion/mkg-225.jpg`, width: 3545, height: 5317 },
+      { src: `${IK}/Moments%20in%20Motion/mkg-224.jpg`, width: 5317, height: 3545 },
+      { src: `${IK}/Moments%20in%20Motion/mkg-22.jpg`, width: 5472, height: 3648 },
+      // Group 9: IMG_0776.jpg, IMG_0559.jpg, IMG_0434.jpg
+      { src: `${IK}/Moments%20in%20Motion/IMG_0776.jpg`, width: 5425, height: 3617 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0559.jpg`, width: 5348, height: 3565 },
+      { src: `${IK}/Moments%20in%20Motion/IMG_0434.jpg`, width: 5174, height: 3449 },
     ],
   },
   {
