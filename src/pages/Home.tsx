@@ -10,7 +10,6 @@ import Hero from '../components/hero/Hero';
 // =========================================================================
 const SERVICES_HEADING_SIZE = 'text-4xl md:text-7xl lg:text-8xl';
 
-const CONTACT_HEADING_SIZE = 'text-4xl md:text-7xl lg:text-8xl';
 const CONTACT_LABEL_SIZE = 'text-xs';
 const CONTACT_INPUT_SIZE = 'text-base md:text-sm';
 const CONTACT_BUTTON_SIZE = 'text-xs';
@@ -184,7 +183,7 @@ const Home: React.FC = () => {
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <Reveal>
-              <h2 className={`${CONTACT_HEADING_SIZE} font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8`}>CONTACT ME.</h2>
+              <h2 className={`${SERVICES_HEADING_SIZE} font-heading uppercase tracking-tight leading-none text-white mb-8`}>Reach Out</h2>
             </Reveal>
             <Reveal className="w-full">
               <form className="space-y-8 font-body">
