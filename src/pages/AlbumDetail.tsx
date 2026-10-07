@@ -16,7 +16,10 @@ const AlbumDetail: React.FC = () => {
   const album = albums.find((a) => a.id === albumId);
   if (!album) return <div className="text-center py-24 text-white">Album not found.</div>;
 
-  const isMasonryAlbum = album.id === 'character-studies' || album.id === 'moments-in-motion';
+  const isMasonryAlbum =
+    album.id === 'character-studies' ||
+    album.id === 'moments-in-motion' ||
+    album.id === 'the-edge-of-effort';
   const isMosaicAlbum = album.id === 'monochrome';
 
   const openLightbox = (index: number) => { setActiveImageIndex(index); setLightboxOpen(true); };
