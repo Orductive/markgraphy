@@ -1,11 +1,11 @@
-@import "./styles/fonts.css";
 @import "tailwindcss";
 
 @theme {
   --font-heading: 'Anton', sans-serif;
   --font-body: 'DM Sans', sans-serif;
-  --font-lazy-dark: 'Lazy Dark Demo', cursive;
-  --font-neulis: 'Neulis Sans', sans-serif;
+  --font-display: 'Instrument Serif', serif;
+  --font-mono-accent: 'Space Mono', monospace;
+  --color-rust: #B7410E;
 }
 
 :root {
@@ -14,6 +14,9 @@
   --color-text-primary: #F5F5F5;
   --color-text-secondary: #888888;
   --color-accent: #CC0000;
+  --color-rust: #B7410E;
+  --font-display: 'Instrument Serif', serif;
+  --font-mono-accent: 'Space Mono', monospace;
 }
 
 

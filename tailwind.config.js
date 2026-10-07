@@ -9,8 +9,11 @@ export default {
       fontFamily: {
         'heading': ['Anton', 'sans-serif'],
         'body': ['"DM Sans"', 'sans-serif'],
-        'lazy-dark': ['"Lazy Dark Demo"', 'cursive'],
-        'neulis': ['"Neulis Sans"', 'sans-serif'],
+        'display': ['"Instrument Serif"', 'serif'],
+        'mono-accent': ['"Space Mono"', 'monospace'],
+      },
+      colors: {
+        'rust': '#B7410E',
       },
     },
   },

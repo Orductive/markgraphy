@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronDown, Play, X } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Accordion from '../components/Accordion';
 import Reveal from '../components/Reveal';
+import Hero from '../components/hero/Hero';
 
 const Home: React.FC = () => {
   const location = useLocation();
@@ -11,11 +12,6 @@ const Home: React.FC = () => {
     { id: 'videography', title: 'Video', content: 'From commercial campaigns to documentary-style storytelling, we craft moving images that command attention.' },
     { id: 'photography', title: 'Photography', content: 'Striking, high-end photography for brands, events, and individuals who demand visual excellence.' },
     { id: 'consulting', title: 'Consulting', content: "Strategic visual consulting to help align your brand's aesthetic with your overarching business goals." },
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const heroImages = [
-    'https://ik.imagekit.io/orductive/photography/Hub%20Page%20images/1.jpg',
   ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -30,13 +26,6 @@ const Home: React.FC = () => {
     }
   }, [location]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 7000);
-    return () => clearInterval(interval);
-  }, [heroImages.length]);
-
   const openLightbox = (index: number) => { setActiveImage(index); setLightboxOpen(true); };
   const closeLightbox = () => { setLightboxOpen(false); setActiveImage(null); };
 
@@ -44,44 +33,7 @@ const Home: React.FC = () => {
     <div style={{ width: '100%' }} className="text-white">
 
       {/* 1. Hero */}
-      <div style={{
-        width: '100%',
-        height: '100vh',
-        backgroundImage: `url(${heroImages[currentImageIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative',
-        marginTop: '-80px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
-        <div style={{ position: 'relative', zIndex: 20, textAlign: 'center', padding: '0 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-          <Reveal y={20} duration={0.8} delay={0.6}>
-            <h1 className="font-lazy-dark" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', letterSpacing: '0.2em', color: 'white', marginBottom: '0.5rem' }}>
-              Bismark Akoto
-            </h1>
-          </Reveal>
-          <Reveal y={20} duration={0.8} delay={0.7}>
-            <p className="font-neulis font-normal text-sm md:text-base text-gray-300 uppercase tracking-[0.3em] mb-4">The Visual Storyteller</p>
-          </Reveal>
-          <Reveal y={20} duration={0.8} delay={0.8}>
-            <p className="font-neulis font-thin text-sm text-gray-400 mb-10">Creating bold, immersive stories that leave a lasting impression.</p>
-          </Reveal>
-          <Link
-            to="/photography"
-            className="px-8 py-4 border border-white text-white font-medium hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm rounded-full"
-          >
-            View My Work
-          </Link>
-        </div>
-        <div style={{ position: 'absolute', bottom: '2.5rem', zIndex: 20 }} className="animate-bounce">
-          <ChevronDown size={32} className="text-white opacity-70" />
-        </div>
-      </div>
+      <Hero />
 
       {/* 2. About Me Preview */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] bg-[var(--color-background)]">
