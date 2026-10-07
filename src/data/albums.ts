@@ -27,6 +27,7 @@ export interface Album {
   title: string;
   description: string;
   coverImage: string;
+  coverPosition?: string;
   images: AlbumImage[];
   subAlbums?: SubAlbum[];
 }
@@ -39,6 +40,7 @@ export const albums: Album[] = [
     title: 'Character Studies',
     description: 'Every face holds a story before a single word is spoken.',
     coverImage: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`,
+    coverPosition: 'center 15%',
     images: [
       // Group 1: IMG_0877 4.40.28 PM.jpg, IMG_0859 4.40.28 PM.jpg, IMG_1034.jpg, IMG_1009.jpg
       { src: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`, width: 3318, height: 4977 },

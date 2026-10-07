@@ -13,19 +13,47 @@ const Photography: React.FC = () => {
         {albums.map((album) => (
           <Link key={album.id} to={`/photography/${album.id}`} className="group block cursor-pointer">
             {/* Image Placeholder */}
-            <div
-              style={{
-                width: '100%',
-                paddingBottom: '100%',
-                position: 'relative',
-                overflow: 'hidden',
-                backgroundImage: `url(${album.coverImage}?tr=w-600)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center top',
-                marginBottom: '1.5rem',
-              }}
-              className="transition-transform duration-700 group-hover:scale-105"
-            />
+            {album.coverPosition ? (
+              <div
+                style={{
+                  width: '100%',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  marginBottom: '1.5rem',
+                }}
+                className="transition-transform duration-700 group-hover:scale-105"
+              >
+                <img
+                  src={`${album.coverImage}?tr=w-600`}
+                  alt={album.title}
+                  loading="lazy"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: album.coverPosition,
+                  }}
+                />
+              </div>
+            ) : (
+              <div
+                style={{
+                  width: '100%',
+                  paddingBottom: '100%',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  backgroundImage: `url(${album.coverImage}?tr=w-600)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center top',
+                  marginBottom: '1.5rem',
+                }}
+                className="transition-transform duration-700 group-hover:scale-105"
+              />
+            )}
             {/* Details */}
             <div>
               <h3 className="text-2xl text-white mb-2 group-hover:text-[var(--color-accent)] transition-colors flex items-center justify-between font-heading">
