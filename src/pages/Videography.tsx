@@ -56,7 +56,13 @@ const Videography: React.FC = () => {
   );
 };
 
+const SHOW_VIDEO_DESCRIPTIONS: boolean | ((category: string) => boolean) = false;
+
 const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
+  const showDescription = typeof SHOW_VIDEO_DESCRIPTIONS === 'function'
+    ? (SHOW_VIDEO_DESCRIPTIONS as (category: string) => boolean)(project.category)
+    : Boolean(SHOW_VIDEO_DESCRIPTIONS);
+
   return (
     <Link 
       to={`/videography/${project.id}`} 
@@ -67,7 +73,7 @@ const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
           position: 'relative',
           paddingBottom: '66.67%',
           overflow: 'hidden',
-          marginBottom: '20px',
+          marginBottom: '14px',
           backgroundImage: `url(${project.thumbnail})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -81,14 +87,16 @@ const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
           </div>
         </div>
       </div>
-      <div className="mt-4">
+      <div>
         <span className="text-xs text-[var(--color-accent)] uppercase tracking-wider block mb-1 font-semibold">
           {project.category}
         </span>
-        <h3 className="text-2xl text-white font-heading uppercase mb-2">
+        <h3 className={`text-2xl text-white font-heading uppercase ${showDescription ? 'mb-2' : 'mb-1'}`}>
           {project.title}
         </h3>
-        <p className="text-sm text-gray-400 leading-relaxed mb-2">{project.description}</p>
+        {showDescription && project.description && (
+          <p className="text-sm text-gray-400 leading-relaxed mb-2">{project.description}</p>
+        )}
         {project.role && (
           <p className="text-sm text-gray-500 italic">Role: {project.role}</p>
         )}

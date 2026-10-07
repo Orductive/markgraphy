@@ -5,6 +5,16 @@ import Accordion from '../components/Accordion';
 import Reveal from '../components/Reveal';
 import Hero from '../components/hero/Hero';
 
+// =========================================================================
+// SERVICES & CONTACT FONT SIZES
+// =========================================================================
+const SERVICES_HEADING_SIZE = 'text-4xl md:text-7xl lg:text-8xl';
+
+const CONTACT_HEADING_SIZE = 'text-4xl md:text-7xl lg:text-8xl';
+const CONTACT_LABEL_SIZE = 'text-xs';
+const CONTACT_INPUT_SIZE = 'text-base md:text-sm';
+const CONTACT_BUTTON_SIZE = 'text-xs';
+
 const Home: React.FC = () => {
   const location = useLocation();
 
@@ -154,11 +164,14 @@ const Home: React.FC = () => {
         </Reveal>
       </section>
 
+      {/* =========================================================================
+          SERVICES & CONTACT FONT SIZES
+          ========================================================================= */}
       {/* 5. Services */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-[1063px] mx-auto border-b border-[var(--color-surface)] overflow-hidden bg-[var(--color-background)]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <Reveal>
-            <h2 className="text-5xl md:text-8xl lg:text-9xl font-heading uppercase tracking-tight leading-none">Services</h2>
+            <h2 className={`${SERVICES_HEADING_SIZE} font-heading uppercase tracking-tight leading-none`}>Services</h2>
           </Reveal>
           <Reveal className="w-full">
             <Accordion items={servicesData} defaultOpenId="videography" />
@@ -171,26 +184,26 @@ const Home: React.FC = () => {
         <div className="max-w-[1063px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <Reveal>
-              <h2 className="text-5xl md:text-8xl lg:text-9xl font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8">CONTACT ME.</h2>
+              <h2 className={`${CONTACT_HEADING_SIZE} font-semibold tracking-[-2.3px] font-heading uppercase leading-none text-white mb-8`}>CONTACT ME.</h2>
             </Reveal>
             <Reveal className="w-full">
               <form className="space-y-8 font-body">
                 <div>
-                  <label className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Name</label>
+                  <label className={`block ${CONTACT_LABEL_SIZE} font-semibold uppercase tracking-wider mb-4 text-gray-300`}>Name</label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="First Name (required)" required className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm" />
-                    <input type="text" placeholder="Last Name (required)" required className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm" />
+                    <input type="text" placeholder="First Name (required)" required className={`w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 ${CONTACT_INPUT_SIZE}`} />
+                    <input type="text" placeholder="Last Name (required)" required className={`w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 ${CONTACT_INPUT_SIZE}`} />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Email</label>
-                  <input type="email" placeholder="Email (required)" required className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm" />
+                  <label className={`block ${CONTACT_LABEL_SIZE} font-semibold uppercase tracking-wider mb-4 text-gray-300`}>Email</label>
+                  <input type="email" placeholder="Email (required)" required className={`w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 ${CONTACT_INPUT_SIZE}`} />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold uppercase tracking-wider mb-4 text-gray-300">Brief Description</label>
-                  <input type="text" placeholder="Brief Description (required)" required className="w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 text-sm" />
+                  <label className={`block ${CONTACT_LABEL_SIZE} font-semibold uppercase tracking-wider mb-4 text-gray-300`}>Brief Description</label>
+                  <input type="text" placeholder="Brief Description (required)" required className={`w-full bg-gray-100 border border-gray-300 px-4 py-3 focus:outline-none focus:border-white transition-colors text-black placeholder-gray-500 ${CONTACT_INPUT_SIZE}`} />
                 </div>
-                <button type="submit" className="w-full md:w-auto px-10 py-4 bg-[var(--color-accent)] text-white font-semibold uppercase tracking-widest text-sm hover:bg-red-700 transition-colors">
+                <button type="submit" className={`w-full md:w-auto px-10 py-4 bg-[var(--color-accent)] text-white font-semibold uppercase tracking-widest ${CONTACT_BUTTON_SIZE} hover:bg-red-700 transition-colors`}>
                   Send
                 </button>
               </form>

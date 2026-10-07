@@ -12,6 +12,12 @@ interface AccordionProps {
   defaultOpenId?: string;
 }
 
+// =========================================================================
+// ACCORDION / SERVICES FONT SIZES
+// =========================================================================
+export const ACCORDION_TITLE_SIZE = 'text-xl md:text-2xl';
+export const ACCORDION_BODY_SIZE = 'text-sm';
+
 const Accordion: React.FC<AccordionProps> = ({ items, defaultOpenId }) => {
   const [openId, setOpenId] = useState<string | null>(defaultOpenId || null);
 
@@ -27,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, defaultOpenId }) => {
             onClick={() => toggle(item.id)}
             className="w-full py-4 flex justify-between items-center focus:outline-none group"
           >
-            <span className="text-2xl md:text-3xl font-heading uppercase text-[var(--color-accent)] group-hover:text-red-500 transition-colors tracking-wide">
+            <span className={`${ACCORDION_TITLE_SIZE} font-heading uppercase text-[var(--color-accent)] group-hover:text-red-500 transition-colors tracking-wide`}>
               {item.title}
             </span>
             <span className="text-white group-hover:text-[var(--color-accent)] transition-colors">
@@ -41,7 +47,7 @@ const Accordion: React.FC<AccordionProps> = ({ items, defaultOpenId }) => {
             }`}
           >
             <div className="overflow-hidden">
-              <p className="text-white text-sm md:text-base leading-relaxed pb-6 pr-8 max-w-lg">
+              <p className={`text-white ${ACCORDION_BODY_SIZE} leading-relaxed pb-6 pr-8 max-w-lg`}>
                 {item.content}
               </p>
             </div>

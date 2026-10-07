@@ -103,10 +103,10 @@ export const CueNameBlock: React.FC<CueNameBlockProps> = ({ nameRef, buttonRef }
         >
           <Link
             to="/photography"
-            className="inline-block px-7 sm:px-9 py-3 sm:py-3.5 border border-rust bg-transparent text-white font-mono-accent uppercase tracking-[0.25em] text-xs sm:text-sm transition-all duration-300 hover:bg-rust hover:text-white focus:outline-none focus:ring-1 focus:ring-rust cursor-pointer"
+            className="inline-block px-7 sm:px-9 py-3 sm:py-3.5 border border-[var(--color-accent)] bg-transparent text-white font-mono-accent uppercase tracking-[0.25em] text-xs sm:text-sm transition-all duration-300 hover:bg-[var(--color-accent)] hover:text-white focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] cursor-pointer"
             style={{
               fontFamily: "var(--font-mono-accent, 'Space Mono', monospace)",
-              borderColor: 'var(--color-rust, #B7410E)',
+              borderColor: 'var(--color-accent)',
               letterSpacing: '0.25em',
             }}
           >

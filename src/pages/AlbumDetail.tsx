@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { albums } from '../data/albums';
 import Reveal from '../components/Reveal';
 import ExplicitColumnMasonry from '../components/ExplicitColumnMasonry';
+import MosaicGallery from '../components/MosaicGallery';
 
 const AlbumDetail: React.FC = () => {
   const { albumId } = useParams<{ albumId: string }>();
@@ -16,9 +17,29 @@ const AlbumDetail: React.FC = () => {
   if (!album) return <div className="text-center py-24 text-white">Album not found.</div>;
 
   const isMasonryAlbum = album.id === 'character-studies' || album.id === 'moments-in-motion';
+  const isMosaicAlbum = album.id === 'monochrome';
 
   const openLightbox = (index: number) => { setActiveImageIndex(index); setLightboxOpen(true); };
   const closeLightbox = () => { setLightboxOpen(false); setActiveImageIndex(null); };
+
+  const showPrev = useCallback(() => {
+    setActiveImageIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : album.images.length - 1));
+  }, [album.images.length]);
+
+  const showNext = useCallback(() => {
+    setActiveImageIndex((prev) => (prev !== null && prev < album.images.length - 1 ? prev + 1 : 0));
+  }, [album.images.length]);
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, showPrev, showNext]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-white min-h-screen">
@@ -61,7 +82,9 @@ const AlbumDetail: React.FC = () => {
         </Reveal>
       ) : (
         <>
-          {isMasonryAlbum ? (
+          {isMosaicAlbum ? (
+            <MosaicGallery images={album.images} onOpenLightbox={openLightbox} />
+          ) : isMasonryAlbum ? (
             <ExplicitColumnMasonry images={album.images} onOpenLightbox={openLightbox} />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -91,8 +114,22 @@ const AlbumDetail: React.FC = () => {
 
           {lightboxOpen && activeImageIndex !== null && (
             <div className="fixed inset-0 z-[100] bg-black bg-opacity-95 flex items-center justify-center p-4">
-              <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors">
+              <button onClick={closeLightbox} className="absolute top-6 right-6 text-white hover:text-[var(--color-accent)] transition-colors z-20 cursor-pointer">
                 <X size={32} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); showPrev(); }}
+                className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-accent)] transition-colors p-2 z-20 cursor-pointer"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft size={36} />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); showNext(); }}
+                className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-accent)] transition-colors p-2 z-20 cursor-pointer"
+                aria-label="Next photo"
+              >
+                <ChevronRight size={36} />
               </button>
               <div className="w-full h-full p-4 md:p-12 flex flex-col items-center justify-center">
                 <img
