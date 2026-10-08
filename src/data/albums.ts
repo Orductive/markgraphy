@@ -40,7 +40,7 @@ export const albums: Album[] = [
     title: 'Character Studies',
     description: 'Every face holds a story before a single word is spoken.',
     coverImage: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`,
-    coverPosition: 'center 15%',
+    coverPosition: 'center 58%',
     images: [
       // Group 1: IMG_0877 4.40.28 PM.jpg, IMG_0859 4.40.28 PM.jpg, IMG_1034.jpg, IMG_1009.jpg
       { src: `${IK}/Character%20Studies/IMG_0877%204.40.28%E2%80%AFPM.jpg`, width: 3318, height: 4977 },
@@ -258,14 +258,11 @@ export const albums: Album[] = [
       { src: `${IK}/Moments%20in%20Motion/TBG-97.jpg`, width: 3401, height: 5101 },
       { src: `${IK}/Moments%20in%20Motion/TBG-190.jpg`, width: 4372, height: 2915 },
       { src: `${IK}/Moments%20in%20Motion/TBG-191.jpg`, width: 4372, height: 2915 },
-      // Group 4: IMG_0348.jpg, IMG_0485.jpg, IMG_0691.jpg, IMG_0676.jpg
-      { src: `${IK}/Moments%20in%20Motion/IMG_0348.jpg`, width: 5472, height: 3648 },
+      // Group 4: IMG_0485.jpg, IMG_0691.jpg
       { src: `${IK}/Moments%20in%20Motion/IMG_0485.jpg`, width: 5109, height: 3406 },
       { src: `${IK}/Moments%20in%20Motion/IMG_0691.jpg`, width: 5278, height: 3519 },
-      { src: `${IK}/Moments%20in%20Motion/IMG_0676.jpg`, width: 5425, height: 3617 },
-      // Group 5: tc-126 (1).jpg, IMG_0784.jpg, IMG_0793.jpg, Cover.jpg
+      // Group 5: tc-126 (1).jpg, IMG_0793.jpg, Cover.jpg
       { src: `${IK}/Moments%20in%20Motion/tc-126%20(1).jpg`, width: 5472, height: 3648 },
-      { src: `${IK}/Moments%20in%20Motion/IMG_0784.jpg`, width: 5425, height: 3617 },
       { src: `${IK}/Moments%20in%20Motion/IMG_0793.jpg`, width: 3444, height: 2296 },
       { src: `${IK}/Moments%20in%20Motion/Cover.jpg`, width: 5174, height: 3449 },
       // Group 6: IMG_0015.jpg, IMG_0806.jpg, IMG_0019.jpg
@@ -279,8 +276,7 @@ export const albums: Album[] = [
       { src: `${IK}/Moments%20in%20Motion/mkg-225.jpg`, width: 3545, height: 5317 },
       { src: `${IK}/Moments%20in%20Motion/mkg-224.jpg`, width: 5317, height: 3545 },
       { src: `${IK}/Moments%20in%20Motion/mkg-22.jpg`, width: 5472, height: 3648 },
-      // Group 9: IMG_0776.jpg, IMG_0559.jpg, IMG_0434.jpg
-      { src: `${IK}/Moments%20in%20Motion/IMG_0776.jpg`, width: 5425, height: 3617 },
+      // Group 9: IMG_0559.jpg, IMG_0434.jpg
       { src: `${IK}/Moments%20in%20Motion/IMG_0559.jpg`, width: 5348, height: 3565 },
       { src: `${IK}/Moments%20in%20Motion/IMG_0434.jpg`, width: 5174, height: 3449 },
     ],
