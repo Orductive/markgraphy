@@ -66,6 +66,15 @@ export const videos: Video[] = [
     thumbnail: 'https://img.youtube.com/vi/Yo5yP_LSaKE/maxresdefault.jpg',
     role: 'Scripting, Directing, Filming and Editing',
   },
+  {
+    id: 'series-4',
+    title: 'Terries on the Quad EP4',
+    category: 'Series',
+    description: 'The college president sits down with students on the quad for honest, one-on-one conversations about campus life.',
+    youtubeUrl: 'https://www.youtube.com/watch?v=Wd6D4TWhu2M',
+    thumbnail: 'https://img.youtube.com/vi/Wd6D4TWhu2M/maxresdefault.jpg',
+    role: 'Scripting, Directing, Filming and Editing',
+  },
 
   // ---- CORPORATE & BRAND ----
   {

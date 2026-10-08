@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Play } from 'lucide-react';
 import { videos, type Video } from '../data/videos';
+import { SHOW_VIDEO_DESCRIPTIONS } from '../data/videoSettings';
 import Reveal from '../components/Reveal';
 
 const VideoDetail: React.FC = () => {
@@ -26,6 +27,10 @@ const VideoDetail: React.FC = () => {
   if (!video) {
     return <div className="text-center py-24 text-white">Video not found.</div>;
   }
+
+  const showDescription = typeof SHOW_VIDEO_DESCRIPTIONS === 'function'
+    ? SHOW_VIDEO_DESCRIPTIONS(video.category)
+    : Boolean(SHOW_VIDEO_DESCRIPTIONS);
 
   const prevVideo = currentIndex > 0 ? videos[currentIndex - 1] : null;
   const nextVideo = currentIndex < videos.length - 1 ? videos[currentIndex + 1] : null;
@@ -74,20 +79,30 @@ const VideoDetail: React.FC = () => {
         </div>
         
         {/* 3. Title */}
-        <h1 className="font-heading text-4xl md:text-5xl mb-8 uppercase leading-tight tracking-tight">
+        <h1 className={`font-heading text-4xl md:text-5xl uppercase leading-tight tracking-tight ${
+          showDescription ? 'mb-8' : (video.role ? 'mb-3' : 'mb-10')
+        }`}>
           {video.title}
         </h1>
 
         {/* 4. Description */}
-        <p className="text-lg text-gray-300 leading-relaxed mb-8 font-body">
-          {video.description || '[Placeholder Description] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
-        </p>
+        {showDescription && (
+          <p className="text-lg text-gray-300 leading-relaxed mb-8 font-body">
+            {video.description || '[Placeholder Description] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+          </p>
+        )}
 
         {/* 5. Roles */}
-        <div className="text-gray-400 border-t border-[var(--color-surface)] pt-6 font-body mb-16">
-          <span className="font-bold text-white uppercase tracking-wider text-sm mr-4">Roles:</span>
-          {video.role}
-        </div>
+        {video.role && (
+          <div className={`text-gray-400 font-body ${
+            showDescription 
+              ? 'border-t border-[var(--color-surface)] pt-6 mb-16' 
+              : 'mb-10'
+          }`}>
+            <span className="font-bold text-white uppercase tracking-wider text-sm mr-4">Roles:</span>
+            {video.role}
+          </div>
+        )}
       </Reveal>
 
       {/* 6. Navigation Control */}

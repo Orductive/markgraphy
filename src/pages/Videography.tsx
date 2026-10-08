@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import { videos } from '../data/videos';
+import { SHOW_VIDEO_DESCRIPTIONS } from '../data/videoSettings';
 import Reveal from '../components/Reveal';
 
 const Videography: React.FC = () => {
@@ -55,8 +56,6 @@ const Videography: React.FC = () => {
     </div>
   );
 };
-
-const SHOW_VIDEO_DESCRIPTIONS: boolean | ((category: string) => boolean) = false;
 
 const VideoCard: React.FC<{ project: typeof videos[0] }> = ({ project }) => {
   const showDescription = typeof SHOW_VIDEO_DESCRIPTIONS === 'function'
