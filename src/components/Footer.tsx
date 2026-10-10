@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
           &copy; {new Date().getFullYear()} Marrkgraphy. All rights reserved.
         </p>
         <p className="text-sm text-[var(--color-text-secondary)]">
-          Built by <a href="https://orductive.online" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[var(--color-accent)] transition-colors">Orductive</a>
+          Built by <a href="https://www.orductive.online" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[var(--color-accent)] transition-colors">Orductive</a>
         </p>
       </div>
     </footer>
