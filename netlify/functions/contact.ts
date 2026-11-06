@@ -1,6 +1,28 @@
 import type { Handler, HandlerEvent } from '@netlify/functions';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import { Vigil } from '../../vendor/vigil-sdk/index.js';
+
+// Never throws; skipped when VIGIL_* environment variables are not set.
+async function reportToVigil(success: boolean): Promise<void> {
+  try {
+    const url = process.env.VIGIL_STORE_URL;
+    const apiKey = process.env.VIGIL_API_KEY;
+    if (!url || !apiKey) return;
+    const vigil = new Vigil({
+      url,
+      apiKey,
+      defaultTags: { site: 'marrkgraphy', env: process.env.VIGIL_ENV || 'prod' },
+      flushIntervalMs: 0,
+      timeoutMs: 1500,
+      onError: (message: string) => console.error('Vigil:', message),
+    });
+    vigil.record('contact_form_success', success ? 1 : 0);
+    await vigil.flush();
+  } catch (err) {
+    console.error('Vigil: unexpected error', err instanceof Error ? err.message : 'unknown');
+  }
+}
 
 const handler: Handler = async (event: HandlerEvent) => {
   // Only allow POST
@@ -52,11 +74,13 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   if (dbError) {
     console.error('Supabase insert error:', dbError);
+    await reportToVigil(false);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to save submission' }),
     };
   }
+  const vigilReport = reportToVigil(true);
 
   // --- Resend: send emails ---
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -64,6 +88,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
   if (!resendApiKey || !contactToEmail) {
     console.error('Missing Resend environment variables');
+    await vigilReport;
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Server configuration error' }),
@@ -111,6 +136,7 @@ const handler: Handler = async (event: HandlerEvent) => {
     console.error('Resend auto-reply error:', autoReplyResult.error);
   }
 
+  await vigilReport;
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
